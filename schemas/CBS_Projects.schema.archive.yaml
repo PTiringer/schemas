@@ -1,0 +1,225 @@
+definitions:
+  name: "CBS_Projects"
+  sections:
+    Project:
+      base_sections:
+        - "nomad.datamodel.data.EntryData"
+      quantities:
+        title:
+         type: str
+         description: "Records the title of the project. This title does not necessarily correspond to the title of an associated publication."
+         m_annotations:
+          eln:
+           component: StringEditQuantity
+        description:
+         type: str
+         description: "Provides an overview of the project's scientific background, objectives, and scope."
+         m_annotations:
+          eln:
+           component: StringEditQuantity
+        project_ID:
+          type: str
+          description: "Contains the unique project identifier assigned internally by the institute during project registration."
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        project_proposal:
+          type: str
+          description: "Contains the original project proposal outlining the research objectives, hypotheses, and planned methodology."
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        topic_keywords:
+          type: str
+          description: "Contains topic keywords that summarize the main subjects and themes of the entry and support discovery and retrieval. Keywords typically use broader subject terms rather than detailed descriptions and may be linked to synonyms or related concepts to improve searchability and support consistent indexing."
+          m_annotations:
+            eln:
+              component: EnumEditQuantity
+        consents:
+          type: str
+          description: "Describes the participant consent related to the collection, processing, and storage of personal and sensitive data for scientific purposes. Signed consent forms are stored separately and are not accessible through the system due to data protection regulations. For further information or access requests, please contact [contact information / email].?"
+          m_annotations:
+            eln:
+              component: FileEditQuantity
+        ethics_approval:
+          type: str
+          description: "Documents information on the ethics approval for the study, including the acceptance or approval issued by the responsible ethics committee."
+          m_annotations:
+            eln:
+              component: FileEditQuantity
+        required_attributes:
+          type: str
+          description: "Lists the participant characteristics considered relevant for study interpretation and analysis and therefore recorded during data acquisition (e.g. age, sex/gender, handedness)."
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        notes_wikipages:
+          type: str
+          description: "References wiki pages associated with the project, including informal notes, ideas, and ongoing documentation created throughout the project lifecycle. Pages may predate the formal project registration and are linked through the project ID. All pages are timestamped. Some pages may not be accessible due to internal access restrictions."
+          m_annotations:
+            eln:
+              component: URLEditQuantity
+    researcher:
+      base_sections:
+        - "nomad.datamodel.data.EntryData"
+      quantities:
+        researcher_forename_surname:
+          type: str
+          description: "Contains forename and surname of the researchers involved in the project."
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        researcher_role:
+          type: str
+          description: "Contains information about the role of the researchers involved in the project."
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        contact:
+          type: str
+          description: "Contains contact information for the responsible researchers associated with the project. Institutional MPG email addresses may remain active for up to three months after the end of a researchers contract. Whenever possible, long-term contact information or forwarding addresses are provided to support future communication."
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        time_until_leaving:
+          type: Datetime
+          description: "Records the duration and end date of the researchers contract associated with the project."
+          m_annotations:
+            eln:
+              component: DateEditQuantity
+    subject_information:
+      base_sections:
+        - "nomad.datamodel.data.EntryData"
+      quantities:
+        subject:
+          type: str
+          description: "Contains additional research-related information about the study participants. Personal information is stored separately due to data protection regulations and is not accessible through the system. Only  study-specific attributes relevant for analysis are included here. Some overlap with attributes of specimen may occur but should be minimized."
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        consent_status:
+          type: str
+          description: "Documents the general consent framework for the use of participant data (e.g. internal research, publication, or future studies). Individual signed consent records are stored separately due to data protection regulations and are not accessible through the system. Any data reuse must be verified against the original participant consents by the responsible institute. For further information or reuse requests, please contact [contact information / email]."
+          m_annotations:
+            eln:
+              component: EnumEditQuantity
+    data:
+      base_sections:
+        - "nomad.datamodel.data.EntryData"
+      quantities:
+        time_stamp:
+          type: Datetime
+          description: "Records the date and time associated with the creation or acquisition of the dataset. In the case of MRI data, this information is generated automatically during data acquisition, whereas for other experiments it may be entered manually. The timestamp is commonly used to uniquely identify projects or datasets."
+          m_annotations:
+            eln:
+              component: DateTimeEditQuantity
+        other_keys:
+          type: str
+          description: "Lists additional identifiers associated with the dataset or project beyond the primary key. As identifier schemes may differ substantially across projects and experimental workflows, this field supports flexible usage. "
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        automatically_generated_metadata:
+          type: str
+          description: "Documents metadata automatically recorded by the MRI scanner during data acquisition, including acquisition parameters and system configuration. Automated recording minimizes errors introduced through manual documentation and thereby supports consistency, reliability, and traceability."
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        attributes_of_specimen:
+          type: str
+          description: "Documents the specific characteristics and recorded attribute values of the individual subject or specimen as collected during the study. Depending on the study design, this may include demographic information, physiological characteristics, clinical observations, behavioral measures, or other experimental variables relevant for data interpretation, analysis, and reproducibility."
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        referencing_the_project:
+          type: str
+          description: "Documents links between this dataset and associated project entries, typically through project identifiers or other unique keys. Within NOMAD, these identifiers may be automatically interpreted to generate cross-references between related records. This referencing system supports consistency, traceability, navigation between related datasets and project records, and the creation of interconnected metadata structures."
+          m_annotations:
+            eln:
+              component: URLEditQuantity
+    data_lifecycle:
+      base_sections:
+        - "nomad.datamodel.data.EntryData"
+      quantities:
+        processing_information:
+          type: str
+          description: "Documents the data generation and processing workflow, including scripts, software, command-line inputs, and source data where available. While automated provenance tracking is supported whenever possible, research workflows may involve custom-developed tools and experimental analysis procedures requiring flexible or manual documentation approaches."
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        processing_on_wikipage:
+          type: str
+          description: "References wiki pages containing additional information on data generation and processing workflows. These pages may include informal notes, experimental processing details, or evolving analysis documentation created during the course of the project. To enable automatic assignment within NOMAD, wiki entries must contain the associated project identifier and be tagged accordingly (e.g. data processing or information processing). Some pages may be subject to access restrictions if stored within personal user spaces, although broad accessibility is encouraged to support long-term reuse and scientific traceability. For restricted or inaccessible wiki entries, further information or access requests should be directed to the responsible researchers associated with the project."
+          m_annotations:
+            eln:
+              component: URLEditQuantity
+        processing_datasets:
+          type: str
+          description: "Documents datasets associated with the described processing and generation workflows, including source data, intermediate processing outputs, and derived datasets."
+          m_annotations:
+            eln:
+              component: FileEditQuantity
+        storage_and_archive:
+          type: str
+          description: "Provides information on storage systems, archival procedures, and long-term preservation of the dataset. MRI data are typically retained in online storage for four years and subsequently transferred to a secure offline archive environment. Since archived data are not directly accessible online, retrieval requests must be coordinated through the responsible institute personnel. Identifying information such as associated researchers and acquisition dates supports efficient archive retrieval. For further information or archive access requests, please contact [contact information / email]."
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        default_preview:
+          type: str
+          description: "Defines the default visual representation of the dataset, such as thumbnails, figures, charts, images, or 3D volume previews. MRI-related previews are typically rendered as performance-optimized thumbnails and retrieved through external MRI database links."
+          m_annotations:
+            eln:
+              component: URLEditQuantity
+    publication:
+      base_sections:
+        - "nomad.datamodel.data.EntryData"
+      quantities:
+        document:
+          type: str
+          description: "Provides references to publications related to the project or dataset, including scientific background, analysis context, and citation information. References may include links to external publisher resources, institutional repositories such as PuRe, or related records within NOMAD."
+          m_annotations:
+            eln:
+              component: FileEditQuantity
+        document_type:
+          type: str
+          description: "Classifies the referenced document according to its publication or dissemination format, such as paper, poster, presentation, report, or other scientific communication type."
+          m_annotations:
+            eln:
+              component: EnumEditQuantity
+        metadata_of_document:
+          type: str
+          description: "Provides standard bibliographic metadata for the referenced document, including author(s), publication year, journal or publication venue, publisher, DOI, and other relevant details, enabling proper citation and persistent identification."
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        references_to_data:
+          type: str
+          description: "Documents the datasets that directly contributed to the results presented in the publication. This may include cleaned or processed datasets, curated subsets, or supplementary materials prepared for publication."
+          m_annotations:
+            eln:
+              component: URLEditQuantity
+        frozen_published_dataset:    
+          type: str
+          description: "Provides the final, frozen (read-only) version of the dataset used for publication and assigns a DOI for persistent identification, enabling permanent referencing and long-term accessibility."
+          m_annotations:
+            eln:
+              component: URLEditQuantity
+        methods_applied:
+          type: str
+          description: "Provides details on the methods used, including software, programs, protocols, operating systems, and version information. The content of this field is automatically generated from the processing information entry, if available."
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        access_limitations:
+          type: str
+          description: "Contains information on access conditions and limitations for the publication, the dataset, and associated supplementary material, including the permitted scope of access (e.g. institute-only, MPS-wide, or public), ethical or legal constraints, embargo periods, and the procedures or contacts required to request access."
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        funding:
+          type: str
+          description: "Provides information on financial support underlying the project and its publication outputs. This may include project funding sources, grants, funding agencies, grant numbers, and other financial acknowledgements that provide context for the research."
+          m_annotations:
+            eln:
+              component: EnumEditQuantity
