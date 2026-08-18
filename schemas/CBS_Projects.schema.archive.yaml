@@ -11,24 +11,57 @@ definitions:
          m_annotations:
           eln:
            component: StringEditQuantity
+        short_title:
+          type: str
+          description: "Provides a concise short title or abbreviated name for the project."
+          m_annotations:
+            eln:
+              component: StringEditQuantity
         description:
          type: str
          description: "Provides an overview of the project's scientific background, objectives, and scope."
          m_annotations:
           eln:
-           component: StringEditQuantity
+           component: RichTextEditQuantity
         project_ID:
           type: str
           description: "Contains the unique project identifier assigned internally by the institute during project registration."
           m_annotations:
             eln:
               component: StringEditQuantity
+        project_number:
+          type: str
+          description: "Contains the project number assigned to the project for administrative, organizational, or tracking purposes."
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        project_database:
+          type: str
+          description: "Provides the URL of the project database or external project management system associated with the project."
+          m_annotations:
+            eln:
+              component: URLEditQuantity
         project_proposal:
           type: str
           description: "Contains the original project proposal outlining the research objectives, hypotheses, and planned methodology."
           m_annotations:
             eln:
-              component: StringEditQuantity
+              component: RichTextEditQuantity
+        project_proposal_status:
+          type:
+            type_kind: Enum
+            type_data:
+              - Draft
+              - Submitted
+              - Under review
+              - Approved
+              - Rejected
+              - Revision requested
+              - Withdrawn
+          description: "Indicates the current review or approval status of the project proposal."
+          m_annotations:
+            eln:
+              component: EnumEditQuantity
         topic_keywords:
           type: str
           description: "Contains topic keywords that summarize the main subjects and themes of the entry and support discovery and retrieval. Keywords typically use broader subject terms rather than detailed descriptions and may be linked to synonyms or related concepts to improve searchability and support consistent indexing."
@@ -41,25 +74,199 @@ definitions:
           m_annotations:
             eln:
               component: FileEditQuantity
-        ethics_approval:
+        ethics_approval_number:
           type: str
-          description: "Documents information on the ethics approval for the study, including the acceptance or approval issued by the responsible ethics committee."
-          m_annotations:
-            eln:
-              component: FileEditQuantity
-        required_attributes:
-          type: str
-          description: "Lists the participant characteristics considered relevant for study interpretation and analysis and therefore recorded during data acquisition (e.g. age, sex/gender, handedness)."
+          description: "Records the ethics approval number assigned by the responsible ethics committee."
           m_annotations:
             eln:
               component: StringEditQuantity
+        required_attributes:
+          type:
+            type_kind: Enum
+            type_data:
+              - Handiness
+              - Age
+              - Gender
+          shape: ['*']
+          description: Attributes required for the project.
+          m_annotations:
+            eln:
+              component: EnumEditQuantity
         notes_wikipages:
           type: str
           description: "References wiki pages associated with the project, including informal notes, ideas, and ongoing documentation created throughout the project lifecycle. Pages may predate the formal project registration and are linked through the project ID. All pages are timestamped. Some pages may not be accessible due to internal access restrictions."
           m_annotations:
             eln:
               component: URLEditQuantity
-    researcher:
+      sub_sections:
+        recording_sessions:
+          section: Recording_session
+          repeats: true
+
+    Recording_session:
+      m_annotations:
+        eln:
+      quantities:
+        session_id:
+          type: str
+          description: "Contains the identifier of the recording session within the project."
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        session_date:
+          type: Datetime
+          description: "Records the date and time at which the recording session started."
+          m_annotations:
+            eln:
+              component: DateTimeEditQuantity
+        session_type:
+          type:
+            type_kind: Enum
+            type_data:
+              - Baseline
+              - Follow-up
+              - Intervention
+              - Test
+              - Other
+          description: "Classifies the recording session according to its role in the study."
+          m_annotations:
+            eln:
+              component: EnumEditQuantity
+        operator:
+          type: str
+          description: "Contains the name or identifier of the person responsible for the recording session."
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        session_notes:
+          type: str
+          description: "Contains additional notes about the recording session."
+          m_annotations:
+            eln:
+              component: RichTextEditQuantity
+      sub_sections:
+        scans:
+          section: Scan
+          repeats: true
+
+    Scan:
+      m_annotations:
+        eln:
+      quantities:
+        scan_id:
+          type: str
+          description: "Contains the identifier of the scan within the recording session."
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        scan_type:
+          type:
+            type_kind: Enum
+            type_data:
+              - MRI
+              - CT
+              - PET
+              - EEG
+              - MEG
+              - Microscopy
+              - Behavioral recording
+              - Other
+          description: "Classifies the scan or acquisition according to the measurement modality."
+          m_annotations:
+            eln:
+              component: EnumEditQuantity
+        acquisition_time:
+          type: Datetime
+          description: "Records the date and time at which the scan or acquisition started."
+          m_annotations:
+            eln:
+              component: DateTimeEditQuantity
+        scanner_manufacturer:
+          type: str
+          description: "Contains the manufacturer of the device used for the scan."
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        scanner_model:
+          type: str
+          description: "Contains the model of the device used for the scan."
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        protocol_name:
+          type: str
+          description: "Contains the name of the acquisition or scanning protocol."
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        scan_data_file:
+          type: str
+          description: "References the primary raw data file associated with the scan."
+          m_annotations:
+            eln:
+              component: FileEditQuantity
+        scan_notes:
+          type: str
+          description: "Contains additional notes about the scan or acquisition."
+          m_annotations:
+            eln:
+              component: RichTextEditQuantity
+      sub_sections:
+        instances:
+          section: Instance
+          repeats: true
+
+    Instance:
+      m_annotations:
+        eln:
+      quantities:
+        instance_id:
+          type: str
+          description: "Contains the unique identifier of the instance within the scan."
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        instance_number:
+          type: int
+          description: "Records the sequential number of the instance within the scan."
+          m_annotations:
+            eln:
+              component: NumberEditQuantity
+        instance_type:
+          type:
+            type_kind: Enum
+            type_data:
+              - Raw
+              - Anatomical
+              - Functional
+              - Derived
+              - Segmentation
+              - Quality control
+              - Other
+          description: "Classifies the instance according to its role or processing state."
+          m_annotations:
+            eln:
+              component: EnumEditQuantity
+        instance_file:
+          type: str
+          description: "References the data file associated with this instance."
+          m_annotations:
+            eln:
+              component: FileEditQuantity
+        instance_acquisition_time:
+          type: Datetime
+          description: "Records the date and time associated with the individual instance, if available."
+          m_annotations:
+            eln:
+              component: DateTimeEditQuantity
+        instance_notes:
+          type: str
+          description: "Contains additional notes about the individual instance."
+          m_annotations:
+            eln:
+              component: RichTextEditQuantity
+
+    Researcher:
       base_sections:
         - "nomad.datamodel.data.EntryData"
       quantities:
@@ -70,24 +277,38 @@ definitions:
             eln:
               component: StringEditQuantity
         researcher_role:
-          type: str
-          description: "Contains information about the role of the researchers involved in the project."
+          type:
+            type_kind: Enum
+            type_data:
+              - Principal investigator
+              - Co-investigator
+              - Project lead
+              - Research scientist
+              - Postdoctoral researcher
+              - Doctoral researcher
+              - Research assistant
+              - Student assistant
+              - Data manager
+              - Technical staff
+              - External collaborator
+              - Other
+          description: "Classifies the role of the researcher within the project."
           m_annotations:
             eln:
-              component: StringEditQuantity
+              component: EnumEditQuantity
         contact:
           type: str
           description: "Contains contact information for the responsible researchers associated with the project. Institutional MPG email addresses may remain active for up to three months after the end of a researchers contract. Whenever possible, long-term contact information or forwarding addresses are provided to support future communication."
           m_annotations:
             eln:
               component: StringEditQuantity
-        time_until_leaving:
+        availability:
           type: Datetime
-          description: "Records the duration and end date of the researchers contract associated with the project."
+          description: "Records the date until which the researcher is expected to remain available for project-related communication or responsibilities."
           m_annotations:
             eln:
               component: DateEditQuantity
-    subject_information:
+    Subject_information:
       base_sections:
         - "nomad.datamodel.data.EntryData"
       quantities:
@@ -98,12 +319,21 @@ definitions:
             eln:
               component: StringEditQuantity
         consent_status:
-          type: str
-          description: "Documents the general consent framework for the use of participant data (e.g. internal research, publication, or future studies). Individual signed consent records are stored separately due to data protection regulations and are not accessible through the system. Any data reuse must be verified against the original participant consents by the responsible institute. For further information or reuse requests, please contact [contact information / email]."
+          type:
+            type_kind: Enum
+            type_data:
+              - Pending
+              - Granted
+              - Partially granted
+              - Declined
+              - Withdrawn
+              - Expired
+              - Not applicable
+          description: "Documents the current consent status for the use of participant data. Individual signed consent records are stored separately due to data protection regulations and are not accessible through the system."
           m_annotations:
             eln:
               component: EnumEditQuantity
-    data:
+    Data:
       base_sections:
         - "nomad.datamodel.data.EntryData"
       quantities:
@@ -137,7 +367,7 @@ definitions:
           m_annotations:
             eln:
               component: URLEditQuantity
-    data_lifecycle:
+    Data_lifecycle:
       base_sections:
         - "nomad.datamodel.data.EntryData"
       quantities:
@@ -171,19 +401,49 @@ definitions:
           m_annotations:
             eln:
               component: URLEditQuantity
-    publication:
+    Publication:
       base_sections:
         - "nomad.datamodel.data.EntryData"
       quantities:
+        authors:
+          type: str
+          shape: ['*']
+          description: "Lists the authors associated with the publication."
+          m_annotations:
+            eln:
+              component: StringEditQuantity
+        conflict_of_interests:
+          type: str
+          description: "Documents any financial, professional, personal, or institutional conflicts of interest associated with the publication. If no conflicts exist, this should be stated explicitly."
+          m_annotations:
+            eln:
+              component: RichTextEditQuantity
         document:
           type: str
           description: "Provides references to publications related to the project or dataset, including scientific background, analysis context, and citation information. References may include links to external publisher resources, institutional repositories such as PuRe, or related records within NOMAD."
           m_annotations:
             eln:
               component: FileEditQuantity
-        document_type:
+        document_link:
           type: str
-          description: "Classifies the referenced document according to its publication or dissemination format, such as paper, poster, presentation, report, or other scientific communication type."
+          description: "Provides a URL to the publication or document in an external repository, publisher platform, or institutional database."
+          m_annotations:
+            eln:
+              component: URLEditQuantity
+        document_type:
+          type:
+            type_kind: Enum
+            type_data:
+              - Journal article
+              - Conference paper
+              - Poster
+              - Presentation
+              - Report
+              - Thesis
+              - Preprint
+              - Dataset publication
+              - Other
+          description: "Classifies the referenced document according to its publication or dissemination format."
           m_annotations:
             eln:
               component: EnumEditQuantity
@@ -206,11 +466,24 @@ definitions:
             eln:
               component: URLEditQuantity
         methods_applied:
-          type: str
-          description: "Provides details on the methods used, including software, programs, protocols, operating systems, and version information. The content of this field is automatically generated from the processing information entry, if available."
+          type:
+            type_kind: Enum
+            type_data:
+              - Data acquisition
+              - Preprocessing
+              - Statistical analysis
+              - Machine learning
+              - Image processing
+              - Signal processing
+              - Visualization
+              - Quality control
+              - Simulation
+              - Other
+          shape: ['*']
+          description: "Classifies the methods applied in the project or publication. Multiple methods may be selected."
           m_annotations:
             eln:
-              component: StringEditQuantity
+              component: EnumEditQuantity
         access_limitations:
           type: str
           description: "Contains information on access conditions and limitations for the publication, the dataset, and associated supplementary material, including the permitted scope of access (e.g. institute-only, MPS-wide, or public), ethical or legal constraints, embargo periods, and the procedures or contacts required to request access."
@@ -218,8 +491,20 @@ definitions:
             eln:
               component: StringEditQuantity
         funding:
-          type: str
-          description: "Provides information on financial support underlying the project and its publication outputs. This may include project funding sources, grants, funding agencies, grant numbers, and other financial acknowledgements that provide context for the research."
+          type:
+            type_kind: Enum
+            type_data:
+              - Institutional funding
+              - Internal project funding
+              - National research funding
+              - European Union funding
+              - International funding
+              - Industry funding
+              - Foundation funding
+              - No external funding
+              - Other
+          shape: ['*']
+          description: "Classifies the sources of financial support underlying the project and its publication outputs. Multiple funding sources may be selected."
           m_annotations:
             eln:
               component: EnumEditQuantity
