@@ -21,7 +21,6 @@
 @prefix spdx: <http://spdx.org/rdf/terms#> .
 @prefix time: <http://www.w3.org/2006/time#> .
 @prefix fabio: <http://purl.org/spar/fabio/> .
-@prefix ronja: <https://example.org/ronja/> .
 @prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
 @prefix premis: <http://www.loc.gov/premis/rdf/v3/> .
 @prefix schema: <https://schema.org/> .
@@ -33,9 +32,9 @@
 @base <https://example.org/CBS_projects/> .
 
 <https://example.org/CBS_projects/> rdf:type owl:Ontology ;
-                                     dcterms:description "Class-first draft ontology profile for NOMAD-based research data discovery, publication export, provenance documentation, and access governance at MPI CBS. This version incorporates Ronja and Enrico's domain clarifications from June 2026." ;
-                                     dcterms:source "ronja.schema.archive.yaml" ;
-                                     dcterms:title "Ronja lifecycle metadata application ontology draft" ;
+                                     dcterms:description "Class-first draft ontology profile for NOMAD-based research data discovery, publication export, provenance documentation, and access governance at MPI CBS. This version incorporates domain clarifications from June 2026." ;
+                                     dcterms:source "CBS_Projects.schema.archive.yaml" ;
+                                     dcterms:title "CBS_Projects lifecycle metadata application ontology draft" ;
                                      owl:versionInfo "2026-06-24 class-first mapping draft" .
 
 #################################################################
@@ -756,7 +755,7 @@ foaf:Person rdf:type owl:Class .
 
 ###  https://example.org/CBS_projects/AcademicTitle
 :AcademicTitle rdf:type owl:Class ;
-               rdfs:subClassOf :RonjaConcept ;
+               rdfs:subClassOf :CBSProjectsConcept ;
                rdfs:label "academic title" ;
                :semanticProperty schema:honorificPrefix .
 
@@ -772,7 +771,7 @@ foaf:Person rdf:type owl:Class .
 
 ###  https://example.org/CBS_projects/AccessEnvironment
 :AccessEnvironment rdf:type owl:Class ;
-                   rdfs:subClassOf :RonjaConcept ;
+                   rdfs:subClassOf :CBSProjectsConcept ;
                    rdfs:label "access environment" .
 
 
@@ -885,7 +884,7 @@ foaf:Person rdf:type owl:Class .
 ###  https://example.org/CBS_projects/BIDSMetadata
 :BIDSMetadata rdf:type owl:Class ;
               rdfs:subClassOf :AcquisitionMetadata ;
-              rdfs:comment "Metadata aligned with the Brain Imaging Data Structure, heavily used in processing and sharing but described by Enrico as a moving target." ;
+              rdfs:comment "Metadata aligned with the Brain Imaging Data Structure, heavily used in processing and sharing and treated as an evolving standard." ;
               rdfs:label "BIDS metadata" .
 
 
@@ -1039,7 +1038,7 @@ foaf:Person rdf:type owl:Class .
 
 ###  https://example.org/CBS_projects/DataLifecycle
 :DataLifecycle rdf:type owl:Class ;
-               rdfs:subClassOf :RonjaConcept ;
+               rdfs:subClassOf :CBSProjectsConcept ;
                rdfs:comment "The full lifecycle from data acquisition and processing to storage, publication, and reuse." ;
                rdfs:label "data lifecycle" ;
                :sourceYamlPath "data_lifecycle" .
@@ -1334,7 +1333,7 @@ foaf:Person rdf:type owl:Class .
 ###  https://example.org/CBS_projects/InstituteOnlyAccess
 :InstituteOnlyAccess rdf:type owl:Class ;
                      rdfs:subClassOf :AccessCondition ;
-                     rdfs:comment "Access limited to the institute. Ronja notes that OASIS may already cover internal access." ;
+                     rdfs:comment "Access limited to the institute. OASIS may already cover internal access." ;
                      rdfs:label "institute-only access" .
 
 
@@ -1432,7 +1431,7 @@ foaf:Person rdf:type owl:Class .
 ###  https://example.org/CBS_projects/MetadataFieldConcept
 :MetadataFieldConcept rdf:type owl:Class ;
                       rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000030> ,
-                                      :RonjaConcept ;
+                                      :CBSProjectsConcept ;
                       rdfs:comment "A class representing the meaning of a YAML form field, not the literal value entered in that field." ;
                       rdfs:label "metadata field concept" .
 
@@ -1627,7 +1626,7 @@ foaf:Person rdf:type owl:Class .
 ###  https://example.org/CBS_projects/PostMortemSpecimen
 :PostMortemSpecimen rdf:type owl:Class ;
                     rdfs:subClassOf :Specimen ;
-                    rdfs:comment "A specimen acquired or studied after death, generally brain-related in Enrico's answer." ;
+                    rdfs:comment "A specimen acquired or studied after death, generally brain-related in the current domain model." ;
                     rdfs:label "post mortem specimen" .
 
 
@@ -1706,7 +1705,7 @@ foaf:Person rdf:type owl:Class .
 ###  https://example.org/CBS_projects/Project
 :Project rdf:type owl:Class ;
          rdfs:subClassOf prov:Activity ,
-                         :RonjaConcept ,
+                         :CBSProjectsConcept ,
                          schema:ResearchProject ;
          rdfs:comment "A scientific project that produces, reuses, documents, processes, freezes, or publishes research data." ;
          rdfs:label "project" ;
@@ -1752,7 +1751,7 @@ foaf:Person rdf:type owl:Class .
 :ProjectProposal rdf:type owl:Class ;
                  rdfs:subClassOf prov:Plan ,
                                  :Document ;
-                 rdfs:comment "A project proposal describing research objectives, hypotheses, and planned methodology. Ronja's current working assumption is that this may remain text, pending Elke's input." ;
+                 rdfs:comment "A project proposal describing research objectives, hypotheses, and planned methodology. The current working assumption is that this may remain text, pending further domain input." ;
                  rdfs:label "project proposal" ;
                  skos:closeMatch schema:CreativeWork ;
                  :sourceYamlPath "Project.poject_proposal" .
@@ -1921,7 +1920,7 @@ foaf:Person rdf:type owl:Class .
 
 ###  https://example.org/CBS_projects/RequiredAttributeSet
 :RequiredAttributeSet rdf:type owl:Class ;
-                      rdfs:subClassOf :RonjaConcept ;
+                      rdfs:subClassOf :CBSProjectsConcept ;
                       rdfs:comment "Participant or specimen characteristics that should be recorded for study interpretation and analysis." ;
                       rdfs:label "required attribute set" ;
                       :sourceYamlPath "Project.required_attributes" .
@@ -1951,7 +1950,7 @@ foaf:Person rdf:type owl:Class .
 
 ###  https://example.org/CBS_projects/ResearchDataManagementPlatform
 :ResearchDataManagementPlatform rdf:type owl:Class ;
-                                rdfs:subClassOf :RonjaConcept ,
+                                rdfs:subClassOf :CBSProjectsConcept ,
                                                 schema:SoftwareApplication ;
                                 rdfs:comment "A central platform for managing, discovering, referencing, and publishing research data and metadata." ;
                                 rdfs:label "research data management platform" ;
@@ -1984,10 +1983,10 @@ foaf:Person rdf:type owl:Class .
                          rdfs:label "researcher participation" .
 
 
-###  https://example.org/CBS_projects/RonjaConcept
-:RonjaConcept rdf:type owl:Class ;
+###  https://example.org/CBS_projects/CBSProjectsConcept
+:CBSProjectsConcept rdf:type owl:Class ;
               rdfs:comment "Top local class for concepts needed to describe projects, experimental data, publications, scientists, access conditions, and processing workflows." ;
-              rdfs:label "Ronja concept" .
+              rdfs:label "CBS_Projects concept" .
 
 
 ###  https://example.org/CBS_projects/Scanner
@@ -2079,7 +2078,7 @@ foaf:Person rdf:type owl:Class .
 
 ###  https://example.org/CBS_projects/SpecimenAttribute
 :SpecimenAttribute rdf:type owl:Class ;
-                   rdfs:subClassOf :RonjaConcept ;
+                   rdfs:subClassOf :CBSProjectsConcept ;
                    rdfs:comment "A recorded characteristic of a participant, subject, specimen, or phantom." ;
                    rdfs:label "specimen attribute" ;
                    :semanticProperty schema:variableMeasured ;
@@ -2097,7 +2096,7 @@ foaf:Person rdf:type owl:Class .
 
 ###  https://example.org/CBS_projects/StorageSystem
 :StorageSystem rdf:type owl:Class ;
-               rdfs:subClassOf :RonjaConcept ;
+               rdfs:subClassOf :CBSProjectsConcept ;
                rdfs:label "storage system" ;
                skos:closeMatch dcat:DataService ;
                :sourceYamlPath "data_lifecycle.storage_and_archive" .
@@ -2107,15 +2106,15 @@ foaf:Person rdf:type owl:Class .
 :StudyLeader rdf:type owl:Class ;
              rdfs:subClassOf org:Role ,
                              :Researcher ;
-             rdfs:comment "The person leading the study, as Ronja expects for the researcher field." ;
+             rdfs:comment "The person leading the study for the researcher field." ;
              rdfs:label "study leader" .
 
 
 ###  https://example.org/CBS_projects/Subject
 :Subject rdf:type owl:Class ;
          rdfs:subClassOf prov:Entity ,
-                         :RonjaConcept ;
-         rdfs:comment "A broad experimental subject. Enrico clarified that this can technically be anything, but usually falls into living specimen, post mortem specimen, or phantom." ;
+                         :CBSProjectsConcept ;
+         rdfs:comment "A broad experimental subject that can technically be anything, but usually falls into living specimen, post mortem specimen, or phantom." ;
          rdfs:label "subject" ;
          :sourceYamlPath "subject.subject" .
 
