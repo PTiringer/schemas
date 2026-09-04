@@ -1,0 +1,2260 @@
+@prefix : <https://example.org/CBS_projects/> .
+@prefix cc: <http://creativecommons.org/ns#> .
+@prefix dpv: <https://w3id.org/dpv#> .
+@prefix duo: <http://purl.obolibrary.org/obo/DUO_> .
+@prefix iao: <http://purl.obolibrary.org/obo/IAO_> .
+@prefix obi: <http://purl.obolibrary.org/obo/OBI_> .
+@prefix org: <http://www.w3.org/ns/org#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix cito: <http://purl.org/spar/cito/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix odrl: <http://www.w3.org/ns/odrl/2/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix spdx: <http://spdx.org/rdf/terms#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix fabio: <http://purl.org/spar/fabio/> .
+@prefix vcard: <http://www.w3.org/2006/vcard/ns#> .
+@prefix premis: <http://www.loc.gov/premis/rdf/v3/> .
+@prefix schema: <https://schema.org/> .
+@prefix uberon: <http://purl.obolibrary.org/obo/UBERON_> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix codemeta: <https://codemeta.github.io/terms/> .
+@prefix datacite: <http://purl.org/spar/datacite/> .
+@prefix ncbitaxon: <http://purl.obolibrary.org/obo/NCBITaxon_> .
+@base <https://example.org/CBS_projects/> .
+
+<https://example.org/CBS_projects/> rdf:type owl:Ontology ;
+                                     dcterms:description "Class-first draft ontology profile for NOMAD-based research data discovery, publication export, provenance documentation, and access governance at MPI CBS. This version incorporates domain clarifications from June 2026." ;
+                                     dcterms:source "CBS_Projects.schema.archive.yaml" ;
+                                     dcterms:title "CBS_Projects lifecycle metadata application ontology draft" ;
+                                     owl:versionInfo "2026-06-24 class-first mapping draft" .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/description
+dcterms:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/source
+dcterms:source rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dcterms:title rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#closeMatch
+skos:closeMatch rdf:type owl:AnnotationProperty .
+
+
+###  https://example.org/CBS_projects/reviewNote
+:reviewNote rdf:type owl:AnnotationProperty ;
+            rdfs:label "review note" .
+
+
+###  https://example.org/CBS_projects/semanticProperty
+:semanticProperty rdf:type owl:AnnotationProperty ;
+                  rdfs:comment "External RDF property that a metadata field concept probably implements. This avoids asserting that a field concept class is equivalent to a property." ;
+                  rdfs:label "semantic property" .
+
+
+###  https://example.org/CBS_projects/sourceYamlPath
+:sourceYamlPath rdf:type owl:AnnotationProperty ;
+                rdfs:comment "Original YAML section or quantity path that motivated a local ontology concept." ;
+                rdfs:label "source YAML path" .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://purl.org/dc/terms/accessRights
+dcterms:accessRights rdf:type owl:ObjectProperty .
+
+
+###  http://purl.org/dc/terms/hasPart
+dcterms:hasPart rdf:type owl:ObjectProperty .
+
+
+###  http://purl.org/dc/terms/isPartOf
+dcterms:isPartOf rdf:type owl:ObjectProperty .
+
+
+###  http://purl.org/dc/terms/license
+dcterms:license rdf:type owl:ObjectProperty .
+
+
+###  http://purl.org/dc/terms/provenance
+dcterms:provenance rdf:type owl:ObjectProperty .
+
+
+###  http://purl.org/dc/terms/references
+dcterms:references rdf:type owl:ObjectProperty .
+
+
+###  http://purl.org/dc/terms/relation
+dcterms:relation rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/adms#identifier
+adms:identifier rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/dcat#distribution
+dcat:distribution rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/org#role
+org:role rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/prov#generated
+prov:generated rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/prov#qualifiedAssociation
+prov:qualifiedAssociation rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/prov#used
+prov:used rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/prov#wasDerivedFrom
+prov:wasDerivedFrom rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/prov#wasGeneratedBy
+prov:wasGeneratedBy rdf:type owl:ObjectProperty .
+
+
+###  https://example.org/CBS_projects/archivedIn
+:archivedIn rdf:type owl:ObjectProperty ;
+            rdfs:domain :Dataset ;
+            rdfs:range :Archive ;
+            rdfs:label "archived in" .
+
+
+###  https://example.org/CBS_projects/derivedFrom
+:derivedFrom rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf prov:wasDerivedFrom ;
+             rdfs:domain :Dataset ;
+             rdfs:range :Dataset ;
+             rdfs:label "derived from" .
+
+
+###  https://example.org/CBS_projects/describesProject
+:describesProject rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :hasProject ;
+                  rdfs:domain :NOMADEntry ;
+                  rdfs:range :Project ;
+                  rdfs:label "describes project" .
+
+
+###  https://example.org/CBS_projects/documentedByWikiPage
+:documentedByWikiPage rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf dcterms:relation ;
+                      rdfs:range :WikiPage ;
+                      rdfs:label "documented by wiki page" ;
+                      :sourceYamlPath "data_lifecycle.processing_on_wikipage" .
+
+
+###  https://example.org/CBS_projects/freezesDataset
+:freezesDataset rdf:type owl:ObjectProperty ;
+                rdfs:domain :PublicationExport ;
+                rdfs:range :FrozenDataset ;
+                rdfs:label "freezes dataset" .
+
+
+###  https://example.org/CBS_projects/generatedBy
+:generatedBy rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf prov:wasGeneratedBy ;
+             rdfs:domain :Dataset ;
+             rdfs:range prov:Activity ;
+             rdfs:label "generated by" .
+
+
+###  https://example.org/CBS_projects/hasAccessCondition
+:hasAccessCondition rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf dcterms:accessRights ;
+                    rdfs:range :AccessCondition ;
+                    rdfs:label "has access condition" .
+
+
+###  https://example.org/CBS_projects/hasConsent
+:hasConsent rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf dcterms:relation ;
+            rdfs:range :Consent ;
+            rdfs:label "has consent" .
+
+
+###  https://example.org/CBS_projects/hasConsentStatus
+:hasConsentStatus rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :hasConsent ;
+                  rdfs:range :ConsentStatus ;
+                  rdfs:label "has consent status" .
+
+
+###  https://example.org/CBS_projects/hasContactPoint
+:hasContactPoint rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf schema:contactPoint ;
+                 rdfs:range :ContactPoint ;
+                 rdfs:label "has contact point" .
+
+
+###  https://example.org/CBS_projects/hasContractInterval
+:hasContractInterval rdf:type owl:ObjectProperty ;
+                     rdfs:domain :ResearcherParticipation ;
+                     rdfs:range :ContractInterval ;
+                     rdfs:label "has contract interval" .
+
+
+###  https://example.org/CBS_projects/hasDOI
+:hasDOI rdf:type owl:ObjectProperty ;
+        rdfs:subPropertyOf :hasIdentifier ;
+        rdfs:range :DOIIdentifier ;
+        rdfs:label "has DOI" .
+
+
+###  https://example.org/CBS_projects/hasDataLink
+:hasDataLink rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf dcat:distribution ;
+             rdfs:domain :Dataset ;
+             rdfs:range :DataLink ;
+             rdfs:label "has data link" .
+
+
+###  https://example.org/CBS_projects/hasDataset
+:hasDataset rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf dcterms:hasPart ;
+            rdfs:range :Dataset ;
+            rdfs:label "has dataset" .
+
+
+###  https://example.org/CBS_projects/hasEmbargoPeriod
+:hasEmbargoPeriod rdf:type owl:ObjectProperty ;
+                  rdfs:range :EmbargoPeriod ;
+                  rdfs:label "has embargo period" .
+
+
+###  https://example.org/CBS_projects/hasEthicsApproval
+:hasEthicsApproval rdf:type owl:ObjectProperty ;
+                   rdfs:domain :Project ;
+                   rdfs:range :EthicsApproval ;
+                   rdfs:label "has ethics approval" .
+
+
+###  https://example.org/CBS_projects/hasFundingInformation
+:hasFundingInformation rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf schema:funding ;
+                       rdfs:domain :Publication ;
+                       rdfs:range :FundingInformation ;
+                       rdfs:label "has funding information" .
+
+
+###  https://example.org/CBS_projects/hasIdentifier
+:hasIdentifier rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf adms:identifier ;
+               rdfs:range :Identifier ;
+               rdfs:label "has identifier" .
+
+
+###  https://example.org/CBS_projects/hasLicense
+:hasLicense rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf dcterms:license ;
+            rdfs:range :License ;
+            rdfs:label "has license" .
+
+
+###  https://example.org/CBS_projects/hasMetadataRecord
+:hasMetadataRecord rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf dcterms:relation ;
+                   rdfs:range :MetadataRecord ;
+                   rdfs:label "has metadata record" .
+
+
+###  https://example.org/CBS_projects/hasMethodDescription
+:hasMethodDescription rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Publication ;
+                      rdfs:range :MethodDescription ;
+                      rdfs:label "has method description" .
+
+
+###  https://example.org/CBS_projects/hasNOMADIdentifier
+:hasNOMADIdentifier rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf :hasIdentifier ;
+                    rdfs:domain :NOMADEntry ;
+                    rdfs:range :NOMADIdentifier ;
+                    rdfs:label "has NOMAD identifier" .
+
+
+###  https://example.org/CBS_projects/hasORCID
+:hasORCID rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :hasIdentifier ;
+          rdfs:domain :Scientist ;
+          rdfs:range :ORCIDIdentifier ;
+          rdfs:label "has ORCID" .
+
+
+###  https://example.org/CBS_projects/hasPreview
+:hasPreview rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf schema:thumbnail ;
+            rdfs:domain :Dataset ;
+            rdfs:range :DefaultPreview ;
+            rdfs:label "has preview" .
+
+
+###  https://example.org/CBS_projects/hasProcessingStep
+:hasProcessingStep rdf:type owl:ObjectProperty ;
+                   rdfs:domain :ProcessingWorkflow ;
+                   rdfs:range :ProcessingStep ;
+                   rdfs:label "has processing step" .
+
+
+###  https://example.org/CBS_projects/hasProcessingWorkflow
+:hasProcessingWorkflow rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf dcterms:provenance ;
+                       rdfs:range :ProcessingWorkflow ;
+                       rdfs:label "has processing workflow" .
+
+
+###  https://example.org/CBS_projects/hasProject
+:hasProject rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf dcterms:relation ;
+            rdfs:range :Project ;
+            rdfs:label "has project" .
+
+
+###  https://example.org/CBS_projects/hasProjectIdentifier
+:hasProjectIdentifier rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf :hasIdentifier ;
+                      rdfs:domain :Project ;
+                      rdfs:range :ProjectIdentifier ;
+                      rdfs:label "has project identifier" .
+
+
+###  https://example.org/CBS_projects/hasProjectProposal
+:hasProjectProposal rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf dcterms:hasPart ;
+                    rdfs:domain :Project ;
+                    rdfs:range :ProjectProposal ;
+                    rdfs:label "has project proposal" .
+
+
+###  https://example.org/CBS_projects/hasProjectRole
+:hasProjectRole rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf org:role ;
+                rdfs:range :ProjectRole ;
+                rdfs:label "has project role" .
+
+
+###  https://example.org/CBS_projects/hasProvenanceRecord
+:hasProvenanceRecord rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf dcterms:provenance ;
+                     rdfs:range :ProvenanceRecord ;
+                     rdfs:label "has provenance record" .
+
+
+###  https://example.org/CBS_projects/hasPublication
+:hasPublication rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf dcterms:relation ;
+                rdfs:domain :Project ;
+                rdfs:range :Publication ;
+                rdfs:label "has publication" .
+
+
+###  https://example.org/CBS_projects/hasPublicationMetadata
+:hasPublicationMetadata rdf:type owl:ObjectProperty ;
+                        rdfs:domain :Publication ;
+                        rdfs:range :PublicationMetadata ;
+                        rdfs:label "has publication metadata" .
+
+
+###  https://example.org/CBS_projects/hasRequiredAttribute
+:hasRequiredAttribute rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Project ;
+                      rdfs:range :RequiredAttributeSet ;
+                      rdfs:label "has required attribute" ;
+                      :sourceYamlPath "Project.required_attributes" .
+
+
+###  https://example.org/CBS_projects/hasResearcherParticipation
+:hasResearcherParticipation rdf:type owl:ObjectProperty ;
+                            rdfs:subPropertyOf prov:qualifiedAssociation ;
+                            rdfs:domain :Project ;
+                            rdfs:range :ResearcherParticipation ;
+                            rdfs:label "has researcher participation" .
+
+
+###  https://example.org/CBS_projects/hasScientist
+:hasScientist rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf schema:contributor ;
+              rdfs:range :Scientist ;
+              rdfs:label "has scientist" .
+
+
+###  https://example.org/CBS_projects/hasSpecimen
+:hasSpecimen rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :hasSubject ;
+             rdfs:range :Specimen ;
+             rdfs:label "has specimen" .
+
+
+###  https://example.org/CBS_projects/hasSpecimenAttribute
+:hasSpecimenAttribute rdf:type owl:ObjectProperty ;
+                      rdfs:domain :Subject ;
+                      rdfs:range :SpecimenAttribute ;
+                      rdfs:label "has specimen attribute" ;
+                      :sourceYamlPath "data.attributes_of_specimen" .
+
+
+###  https://example.org/CBS_projects/hasStorageSystem
+:hasStorageSystem rdf:type owl:ObjectProperty ;
+                  rdfs:range :StorageSystem ;
+                  rdfs:label "has storage system" .
+
+
+###  https://example.org/CBS_projects/hasSubject
+:hasSubject rdf:type owl:ObjectProperty ;
+            rdfs:domain :Dataset ;
+            rdfs:range :Subject ;
+            rdfs:label "has subject" .
+
+
+###  https://example.org/CBS_projects/producesDerivedDataset
+:producesDerivedDataset rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf prov:generated ;
+                        rdfs:domain :ProcessingWorkflow ;
+                        rdfs:range :DerivedDataset ;
+                        rdfs:label "produces derived dataset" .
+
+
+###  https://example.org/CBS_projects/publishesDataset
+:publishesDataset rdf:type owl:ObjectProperty ;
+                  rdfs:domain :PublicationExport ;
+                  rdfs:range :PublishedDataset ;
+                  rdfs:label "publishes dataset" .
+
+
+###  https://example.org/CBS_projects/referencesDataset
+:referencesDataset rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf dcterms:references ;
+                   rdfs:domain :Publication ;
+                   rdfs:range :Dataset ;
+                   rdfs:label "references dataset" ;
+                   :sourceYamlPath "publication.references_to_data" .
+
+
+###  https://example.org/CBS_projects/referencesProject
+:referencesProject rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf dcterms:isPartOf ;
+                   rdfs:domain :Dataset ;
+                   rdfs:range :Project ;
+                   rdfs:label "references project" ;
+                   :sourceYamlPath "data.referencing_the_project" .
+
+
+###  https://example.org/CBS_projects/storedIn
+:storedIn rdf:type owl:ObjectProperty ;
+          rdfs:domain :Dataset ;
+          rdfs:range :StorageSystem ;
+          rdfs:label "stored in" .
+
+
+###  https://example.org/CBS_projects/usesCommandLineInput
+:usesCommandLineInput rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf prov:used ;
+                      rdfs:domain :ProcessingWorkflow ;
+                      rdfs:range :CommandLineInput ;
+                      rdfs:label "uses command-line input" .
+
+
+###  https://example.org/CBS_projects/usesScript
+:usesScript rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf prov:used ;
+            rdfs:domain :ProcessingWorkflow ;
+            rdfs:range :Script ;
+            rdfs:label "uses script" .
+
+
+###  https://example.org/CBS_projects/usesSoftwareTool
+:usesSoftwareTool rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf prov:used ;
+                  rdfs:domain :ProcessingWorkflow ;
+                  rdfs:range :SoftwareTool ;
+                  rdfs:label "uses software tool" .
+
+
+###  https://example.org/CBS_projects/usesSourceDataset
+:usesSourceDataset rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf prov:used ;
+                   rdfs:domain :ProcessingWorkflow ;
+                   rdfs:range :SourceDataset ;
+                   rdfs:label "uses source dataset" .
+
+
+###  https://schema.org/contactPoint
+schema:contactPoint rdf:type owl:ObjectProperty .
+
+
+###  https://schema.org/contributor
+schema:contributor rdf:type owl:ObjectProperty .
+
+
+###  https://schema.org/funding
+schema:funding rdf:type owl:ObjectProperty .
+
+
+###  https://schema.org/thumbnail
+schema:thumbnail rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  https://example.org/CBS_projects/dateTimeValue
+:dateTimeValue rdf:type owl:DatatypeProperty ;
+               rdfs:range xsd:dateTime ;
+               rdfs:label "date-time value" ;
+               skos:closeMatch dcterms:created ,
+                               prov:generatedAtTime ,
+                               schema:dateCreated .
+
+
+###  https://example.org/CBS_projects/descriptionValue
+:descriptionValue rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf :literalValue ;
+                  rdfs:range xsd:string ;
+                  rdfs:label "description value" ;
+                  skos:closeMatch dcterms:description .
+
+
+###  https://example.org/CBS_projects/emailAddressValue
+:emailAddressValue rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :ContactPoint ;
+                   rdfs:range xsd:string ;
+                   rdfs:label "email address value" ;
+                   skos:closeMatch vcard:hasEmail ,
+                                   schema:email .
+
+
+###  https://example.org/CBS_projects/identifierValue
+:identifierValue rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Identifier ;
+                 rdfs:range xsd:string ;
+                 rdfs:label "identifier value" .
+
+
+###  https://example.org/CBS_projects/literalValue
+:literalValue rdf:type owl:DatatypeProperty ;
+              rdfs:range xsd:string ;
+              rdfs:label "literal value" .
+
+
+###  https://example.org/CBS_projects/nameValue
+:nameValue rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf :literalValue ;
+           rdfs:range xsd:string ;
+           rdfs:label "name value" ;
+           skos:closeMatch schema:name .
+
+
+###  https://example.org/CBS_projects/titleValue
+:titleValue rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf :literalValue ;
+            rdfs:range xsd:string ;
+            rdfs:label "title value" ;
+            skos:closeMatch dcterms:title .
+
+
+###  https://example.org/CBS_projects/versionValue
+:versionValue rdf:type owl:DatatypeProperty ;
+              rdfs:range xsd:string ;
+              rdfs:label "version value" ;
+              skos:closeMatch schema:softwareVersion .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://creativecommons.org/ns#License
+cc:License rdf:type owl:Class .
+
+
+###  http://purl.obolibrary.org/obo/DUO_0000001
+<http://purl.obolibrary.org/obo/DUO_0000001> rdf:type owl:Class .
+
+
+###  http://purl.obolibrary.org/obo/IAO_0000030
+<http://purl.obolibrary.org/obo/IAO_0000030> rdf:type owl:Class .
+
+
+###  http://purl.obolibrary.org/obo/IAO_0000100
+<http://purl.obolibrary.org/obo/IAO_0000100> rdf:type owl:Class .
+
+
+###  http://purl.obolibrary.org/obo/IAO_0000310
+<http://purl.obolibrary.org/obo/IAO_0000310> rdf:type owl:Class .
+
+
+###  http://purl.obolibrary.org/obo/OBI_0000968
+<http://purl.obolibrary.org/obo/OBI_0000968> rdf:type owl:Class .
+
+
+###  http://purl.obolibrary.org/obo/OBI_0100051
+<http://purl.obolibrary.org/obo/OBI_0100051> rdf:type owl:Class .
+
+
+###  http://purl.org/spar/cito/Citation
+cito:Citation rdf:type owl:Class .
+
+
+###  http://purl.org/spar/datacite/Identifier
+datacite:Identifier rdf:type owl:Class .
+
+
+###  http://purl.org/spar/datacite/PersonalIdentifier
+datacite:PersonalIdentifier rdf:type owl:Class .
+
+
+###  http://purl.org/spar/datacite/ResourceIdentifier
+datacite:ResourceIdentifier rdf:type owl:Class .
+
+
+###  http://purl.org/spar/fabio/ConferencePoster
+fabio:ConferencePoster rdf:type owl:Class .
+
+
+###  http://purl.org/spar/fabio/Expression
+fabio:Expression rdf:type owl:Class .
+
+
+###  http://purl.org/spar/fabio/Journal
+fabio:Journal rdf:type owl:Class .
+
+
+###  http://purl.org/spar/fabio/JournalArticle
+fabio:JournalArticle rdf:type owl:Class .
+
+
+###  http://purl.org/spar/fabio/Presentation
+fabio:Presentation rdf:type owl:Class .
+
+
+###  http://purl.org/spar/fabio/ReportDocument
+fabio:ReportDocument rdf:type owl:Class .
+
+
+###  http://purl.org/spar/fabio/ResearchPaper
+fabio:ResearchPaper rdf:type owl:Class .
+
+
+###  http://spdx.org/rdf/terms#License
+spdx:License rdf:type owl:Class .
+
+
+###  http://www.loc.gov/premis/rdf/v3/Storage
+premis:Storage rdf:type owl:Class .
+
+
+###  http://www.w3.org/2006/time#Interval
+time:Interval rdf:type owl:Class .
+
+
+###  http://www.w3.org/2006/vcard/ns#Kind
+vcard:Kind rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/adms#Identifier
+adms:Identifier rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/dcat#Dataset
+dcat:Dataset rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/dcat#Distribution
+dcat:Distribution rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/dcat#Resource
+dcat:Resource rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/odrl/2/Duty
+odrl:Duty rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/odrl/2/Permission
+odrl:Permission rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/odrl/2/Policy
+odrl:Policy rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/org#Membership
+org:Membership rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/org#Organization
+org:Organization rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/org#Role
+org:Role rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/prov#Activity
+prov:Activity rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/prov#Agent
+prov:Agent rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/prov#Association
+prov:Association rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/prov#Entity
+prov:Entity rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/prov#Plan
+prov:Plan rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/prov#Role
+prov:Role rdf:type owl:Class .
+
+
+###  http://www.w3.org/ns/prov#SoftwareAgent
+prov:SoftwareAgent rdf:type owl:Class .
+
+
+###  http://xmlns.com/foaf/0.1/Document
+foaf:Document rdf:type owl:Class .
+
+
+###  http://xmlns.com/foaf/0.1/Person
+foaf:Person rdf:type owl:Class .
+
+
+###  https://example.org/CBS_projects/AcademicTitle
+:AcademicTitle rdf:type owl:Class ;
+               rdfs:subClassOf :CBSProjectsConcept ;
+               rdfs:label "academic title" ;
+               :semanticProperty schema:honorificPrefix .
+
+
+###  https://example.org/CBS_projects/AccessCondition
+:AccessCondition rdf:type owl:Class ;
+                 rdfs:subClassOf odrl:Policy ;
+                 rdfs:comment "Condition governing access to data, metadata, publications, or supplementary materials." ;
+                 rdfs:label "access condition" ;
+                 :semanticProperty dcterms:accessRights ;
+                 :sourceYamlPath "publication.access_limitations" .
+
+
+###  https://example.org/CBS_projects/AccessEnvironment
+:AccessEnvironment rdf:type owl:Class ;
+                   rdfs:subClassOf :CBSProjectsConcept ;
+                   rdfs:label "access environment" .
+
+
+###  https://example.org/CBS_projects/AccessLimitation
+:AccessLimitation rdf:type owl:Class ;
+                  rdfs:subClassOf :AccessCondition ;
+                  rdfs:label "access limitation" ;
+                  :semanticProperty dcterms:accessRights ,
+                                    schema:conditionsOfAccess .
+
+
+###  https://example.org/CBS_projects/AccessLimitationsField
+:AccessLimitationsField rdf:type owl:Class ;
+                        rdfs:subClassOf :AccessMetadataField ;
+                        rdfs:label "access limitations field" ;
+                        :semanticProperty dcterms:accessRights ,
+                                          schema:conditionsOfAccess ;
+                        :sourceYamlPath "publication.access_limitations" .
+
+
+###  https://example.org/CBS_projects/AccessMetadataField
+:AccessMetadataField rdf:type owl:Class ;
+                     rdfs:subClassOf :MetadataFieldConcept ;
+                     rdfs:label "access metadata field" .
+
+
+###  https://example.org/CBS_projects/AccessRequest
+:AccessRequest rdf:type owl:Class ;
+               rdfs:subClassOf schema:Action ;
+               rdfs:comment "Request procedure for restricted, archived, or otherwise non-public data." ;
+               rdfs:label "access request" .
+
+
+###  https://example.org/CBS_projects/AcquisitionMetadata
+:AcquisitionMetadata rdf:type owl:Class ;
+                     rdfs:subClassOf :AutomaticallyGeneratedMetadata ;
+                     rdfs:label "acquisition metadata" ;
+                     skos:closeMatch prov:Generation .
+
+
+###  https://example.org/CBS_projects/AcquisitionParameter
+:AcquisitionParameter rdf:type owl:Class ;
+                      rdfs:subClassOf :MetadataRecord ;
+                      rdfs:label "acquisition parameter" .
+
+
+###  https://example.org/CBS_projects/AgeAttribute
+:AgeAttribute rdf:type owl:Class ;
+              rdfs:subClassOf :DemographicAttribute ;
+              rdfs:label "age attribute" ;
+              :semanticProperty schema:birthDate .
+
+
+###  https://example.org/CBS_projects/Archive
+:Archive rdf:type owl:Class ;
+         rdfs:subClassOf premis:Storage ,
+                         :StorageSystem ;
+         rdfs:label "archive" ;
+         skos:closeMatch schema:ArchiveOrganization .
+
+
+###  https://example.org/CBS_projects/ArchiveRetrievalRequest
+:ArchiveRetrievalRequest rdf:type owl:Class ;
+                         rdfs:subClassOf :AccessRequest ;
+                         rdfs:label "archive retrieval request" .
+
+
+###  https://example.org/CBS_projects/AttributesOfSpecimenField
+:AttributesOfSpecimenField rdf:type owl:Class ;
+                           rdfs:subClassOf :DescriptiveMetadataField ;
+                           rdfs:label "attributes of specimen field" ;
+                           :semanticProperty schema:variableMeasured ;
+                           :sourceYamlPath "data.attributes_of_specimen" .
+
+
+###  https://example.org/CBS_projects/Author
+:Author rdf:type owl:Class ;
+        rdfs:subClassOf :Scientist ,
+                        schema:Person ;
+        rdfs:label "author" ;
+        :semanticProperty dcterms:creator ,
+                          schema:author .
+
+
+###  https://example.org/CBS_projects/AutomatedDocumentation
+:AutomatedDocumentation rdf:type owl:Class ;
+                        rdfs:subClassOf :AutomaticallyGeneratedMetadata ;
+                        rdfs:comment "Documentation generated automatically by scanners, software tools, or provenance capture." ;
+                        rdfs:label "automated documentation" .
+
+
+###  https://example.org/CBS_projects/AutomaticallyGeneratedMetadata
+:AutomaticallyGeneratedMetadata rdf:type owl:Class ;
+                                rdfs:subClassOf :MetadataRecord ;
+                                rdfs:comment "Metadata generated by instruments or software, such as MRI scanner acquisition parameters." ;
+                                rdfs:label "automatically generated metadata" ;
+                                skos:closeMatch prov:Entity ;
+                                :sourceYamlPath "data.automatically_generated_metadata" .
+
+
+###  https://example.org/CBS_projects/AutomaticallyGeneratedMetadataField
+:AutomaticallyGeneratedMetadataField rdf:type owl:Class ;
+                                     rdfs:subClassOf :ProvenanceMetadataField ;
+                                     rdfs:label "automatically generated metadata field" ;
+                                     :semanticProperty dcterms:conformsTo ,
+                                                       prov:wasGeneratedBy ;
+                                     :sourceYamlPath "data.automatically_generated_metadata" .
+
+
+###  https://example.org/CBS_projects/BIDSMetadata
+:BIDSMetadata rdf:type owl:Class ;
+              rdfs:subClassOf :AcquisitionMetadata ;
+              rdfs:comment "Metadata aligned with the Brain Imaging Data Structure, heavily used in processing and sharing and treated as an evolving standard." ;
+              rdfs:label "BIDS metadata" .
+
+
+###  https://example.org/CBS_projects/BehavioralMeasure
+:BehavioralMeasure rdf:type owl:Class ;
+                   rdfs:subClassOf :SpecimenAttribute ;
+                   rdfs:label "behavioral measure" .
+
+
+###  https://example.org/CBS_projects/BrainSpecimen
+:BrainSpecimen rdf:type owl:Class ;
+               rdfs:subClassOf :Specimen ;
+               rdfs:comment "A brain or brain-related specimen, including living or post mortem cases where applicable." ;
+               rdfs:label "brain specimen" ;
+               skos:closeMatch <http://purl.obolibrary.org/obo/UBERON_0000955> .
+
+
+###  https://example.org/CBS_projects/Citation
+:Citation rdf:type owl:Class ;
+          rdfs:subClassOf cito:Citation ,
+                          :PublicationMetadata ;
+          rdfs:label "citation" ;
+          :semanticProperty schema:citation .
+
+
+###  https://example.org/CBS_projects/CitationObligation
+:CitationObligation rdf:type owl:Class ;
+                    rdfs:subClassOf odrl:Duty ;
+                    rdfs:comment "Obligation to cite datasets, publications, or persistent identifiers when reusing data." ;
+                    rdfs:label "citation obligation" ;
+                    :semanticProperty cito:cites .
+
+
+###  https://example.org/CBS_projects/ClinicalObservation
+:ClinicalObservation rdf:type owl:Class ;
+                     rdfs:subClassOf :SpecimenAttribute ;
+                     rdfs:label "clinical observation" ;
+                     skos:closeMatch schema:Observation .
+
+
+###  https://example.org/CBS_projects/ClosedAccess
+:ClosedAccess rdf:type owl:Class ;
+              rdfs:subClassOf :AccessCondition ;
+              rdfs:label "closed access" .
+
+
+###  https://example.org/CBS_projects/CommandLineInput
+:CommandLineInput rdf:type owl:Class ;
+                  rdfs:subClassOf prov:Entity ;
+                  rdfs:comment "Command-line input used in a processing workflow." ;
+                  rdfs:label "command-line input" .
+
+
+###  https://example.org/CBS_projects/Consent
+:Consent rdf:type owl:Class ;
+         rdfs:subClassOf <http://purl.obolibrary.org/obo/DUO_0000001> ,
+                         dpv:Consent ;
+         rdfs:comment "Participant consent related to collection, processing, storage, reuse, or publication of personal or sensitive data." ;
+         rdfs:label "consent" ;
+         :sourceYamlPath "Project.consents" .
+
+
+###  https://example.org/CBS_projects/ConsentRecord
+:ConsentRecord rdf:type owl:Class ;
+               rdfs:subClassOf :GovernanceRecord ;
+               rdfs:comment "Metadata about consent. Signed consent forms are stored separately and are not accessible through NOMAD." ;
+               rdfs:label "consent record" ;
+               skos:closeMatch dpv:ConsentRecord .
+
+
+###  https://example.org/CBS_projects/ConsentStatus
+:ConsentStatus rdf:type owl:Class ;
+               rdfs:subClassOf :Consent ;
+               rdfs:comment "General consent framework for participant data use, separate from open access licenses applied to published outputs." ;
+               rdfs:label "consent status" ;
+               skos:closeMatch <http://purl.obolibrary.org/obo/DUO_0000002> ,
+                               dpv:ConsentStatus ;
+               :sourceYamlPath "subject.consent_status" .
+
+
+###  https://example.org/CBS_projects/ConsentStatusField
+:ConsentStatusField rdf:type owl:Class ;
+                    rdfs:subClassOf :AccessMetadataField ;
+                    rdfs:label "consent status field" ;
+                    :semanticProperty dcterms:accessRights ;
+                    :sourceYamlPath "subject.consent_status" .
+
+
+###  https://example.org/CBS_projects/ContactField
+:ContactField rdf:type owl:Class ;
+              rdfs:subClassOf :RelationshipMetadataField ;
+              rdfs:label "contact field" ;
+              :semanticProperty vcard:hasEmail ,
+                                schema:contactPoint ;
+              :sourceYamlPath "researcher.contact" .
+
+
+###  https://example.org/CBS_projects/ContactPoint
+:ContactPoint rdf:type owl:Class ;
+              rdfs:subClassOf vcard:Kind ,
+                              schema:ContactPoint ;
+              rdfs:comment "Contact details for responsible researchers or access requests." ;
+              rdfs:label "contact point" ;
+              :sourceYamlPath "researcher.contact" .
+
+
+###  https://example.org/CBS_projects/ContractInterval
+:ContractInterval rdf:type owl:Class ;
+                  rdfs:subClassOf time:Interval ;
+                  rdfs:comment "The duration or end date of a researcher's contract associated with the project." ;
+                  rdfs:label "contract interval" ;
+                  :sourceYamlPath "researcher.time_until_leaving" .
+
+
+###  https://example.org/CBS_projects/CreativeCommonsLicense
+:CreativeCommonsLicense rdf:type owl:Class ;
+                        rdfs:subClassOf :OpenAccessLicense ;
+                        rdfs:label "Creative Commons license" ;
+                        skos:closeMatch cc:License .
+
+
+###  https://example.org/CBS_projects/CustomSoftware
+:CustomSoftware rdf:type owl:Class ;
+                rdfs:subClassOf :SoftwareTool ;
+                rdfs:comment "Software developed by researchers for experimental analysis or processing." ;
+                rdfs:label "custom software" .
+
+
+###  https://example.org/CBS_projects/DICOMMetadata
+:DICOMMetadata rdf:type owl:Class ;
+               rdfs:subClassOf :AcquisitionMetadata ;
+               rdfs:comment "Scanner-originated medical imaging metadata where DICOM applies." ;
+               rdfs:label "DICOM metadata" .
+
+
+###  https://example.org/CBS_projects/DOIIdentifier
+:DOIIdentifier rdf:type owl:Class ;
+               rdfs:subClassOf datacite:ResourceIdentifier ,
+                               :Identifier ;
+               rdfs:comment "Persistent identifier assigned when a dataset is frozen and published." ;
+               rdfs:label "DOI identifier" ;
+               :semanticProperty bibo:doi .
+
+
+###  https://example.org/CBS_projects/DataDownload
+:DataDownload rdf:type owl:Class ;
+              rdfs:subClassOf dcat:Distribution ,
+                              schema:DataDownload ;
+              rdfs:label "data download" .
+
+
+###  https://example.org/CBS_projects/DataLifecycle
+:DataLifecycle rdf:type owl:Class ;
+               rdfs:subClassOf :CBSProjectsConcept ;
+               rdfs:comment "The full lifecycle from data acquisition and processing to storage, publication, and reuse." ;
+               rdfs:label "data lifecycle" ;
+               :sourceYamlPath "data_lifecycle" .
+
+
+###  https://example.org/CBS_projects/DataLifecycleRecord
+:DataLifecycleRecord rdf:type owl:Class ;
+                     rdfs:subClassOf :MetadataRecord ;
+                     rdfs:comment "Metadata record describing processing, storage, archiving, previews, and traceability for datasets." ;
+                     rdfs:label "data lifecycle record" .
+
+
+###  https://example.org/CBS_projects/DataLink
+:DataLink rdf:type owl:Class ;
+          rdfs:subClassOf dcat:Distribution ,
+                          schema:DataDownload ;
+          rdfs:comment "A reference or link to data in a database or specialized storage system." ;
+          rdfs:label "data link" .
+
+
+###  https://example.org/CBS_projects/DataProtectionOfficer
+:DataProtectionOfficer rdf:type owl:Class ;
+                       rdfs:subClassOf :Scientist ,
+                                       dpv:DataProtectionOfficer ;
+                       rdfs:comment "Responsible person for data protection and privacy-related matters at the institute. The answer identifies Joran Lepsien as the relevant contact." ;
+                       rdfs:label "data protection officer" .
+
+
+###  https://example.org/CBS_projects/DataSource
+:DataSource rdf:type owl:Class ;
+            rdfs:subClassOf prov:Entity ;
+            rdfs:label "data source" ;
+            :semanticProperty dcterms:source .
+
+
+###  https://example.org/CBS_projects/DataTimestampField
+:DataTimestampField rdf:type owl:Class ;
+                    rdfs:subClassOf :ProvenanceMetadataField ;
+                    rdfs:label "data timestamp field" ;
+                    :semanticProperty dcterms:created ,
+                                      prov:generatedAtTime ,
+                                      schema:dateCreated ;
+                    :sourceYamlPath "data.time_stamp" .
+
+
+###  https://example.org/CBS_projects/DataTransformation
+:DataTransformation rdf:type owl:Class ;
+                    rdfs:subClassOf :ProcessingStep ;
+                    rdfs:label "data transformation" ;
+                    skos:closeMatch prov:Activity .
+
+
+###  https://example.org/CBS_projects/DataUsePermission
+:DataUsePermission rdf:type owl:Class ;
+                   rdfs:subClassOf <http://purl.obolibrary.org/obo/DUO_0000001> ,
+                                   odrl:Permission ;
+                   rdfs:label "data use permission" ;
+                   skos:closeMatch dpv:Consent .
+
+
+###  https://example.org/CBS_projects/DatabaseSystem
+:DatabaseSystem rdf:type owl:Class ;
+                rdfs:subClassOf :StorageSystem ;
+                rdfs:comment "An institute database system that may store participant information or actual research data externally to NOMAD." ;
+                rdfs:label "database system" .
+
+
+###  https://example.org/CBS_projects/Dataset
+:Dataset rdf:type owl:Class ;
+         rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000100> ,
+                         dcat:Dataset ,
+                         prov:Entity ,
+                         schema:Dataset ;
+         rdfs:comment "A dataset acquired, reused, processed, archived, frozen, published, or referenced in the project lifecycle." ;
+         rdfs:label "dataset" ;
+         :sourceYamlPath "data" .
+
+
+###  https://example.org/CBS_projects/DefaultPreview
+:DefaultPreview rdf:type owl:Class ;
+                rdfs:subClassOf :MetadataRecord ,
+                                schema:MediaObject ;
+                rdfs:comment "Default visual representation of a dataset, such as thumbnail, figure, chart, image, or 3D volume preview." ;
+                rdfs:label "default preview" ;
+                :sourceYamlPath "data_lifecycle.default_preview" .
+
+
+###  https://example.org/CBS_projects/DefaultPreviewField
+:DefaultPreviewField rdf:type owl:Class ;
+                     rdfs:subClassOf :RelationshipMetadataField ;
+                     rdfs:label "default preview field" ;
+                     :semanticProperty schema:image ,
+                                       schema:thumbnail ;
+                     :sourceYamlPath "data_lifecycle.default_preview" .
+
+
+###  https://example.org/CBS_projects/DemographicAttribute
+:DemographicAttribute rdf:type owl:Class ;
+                      rdfs:subClassOf :SpecimenAttribute ;
+                      rdfs:label "demographic attribute" .
+
+
+###  https://example.org/CBS_projects/DerivedDataset
+:DerivedDataset rdf:type owl:Class ;
+                rdfs:subClassOf :Dataset ;
+                rdfs:label "derived dataset" ;
+                :semanticProperty prov:wasDerivedFrom .
+
+
+###  https://example.org/CBS_projects/DescriptiveMetadataField
+:DescriptiveMetadataField rdf:type owl:Class ;
+                          rdfs:subClassOf :MetadataFieldConcept ;
+                          rdfs:label "descriptive metadata field" .
+
+
+###  https://example.org/CBS_projects/DoctorsOnlyAccess
+:DoctorsOnlyAccess rdf:type owl:Class ;
+                   rdfs:subClassOf :AccessCondition ;
+                   rdfs:comment "Access limited to doctors, mentioned as a possible category to clarify with the institute data protection contact." ;
+                   rdfs:label "doctors-only access" .
+
+
+###  https://example.org/CBS_projects/Document
+:Document rdf:type owl:Class ;
+          rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000310> ,
+                          foaf:Document ,
+                          schema:CreativeWork ;
+          rdfs:comment "A document associated with a project, dataset, processing activity, or publication." ;
+          rdfs:label "document" ;
+          :sourceYamlPath "publication.document" .
+
+
+###  https://example.org/CBS_projects/DocumentField
+:DocumentField rdf:type owl:Class ;
+               rdfs:subClassOf :PublicationMetadataField ;
+               rdfs:label "document field" ;
+               :semanticProperty dcterms:relation ,
+                                 schema:citation ;
+               :sourceYamlPath "publication.document" .
+
+
+###  https://example.org/CBS_projects/DocumentTypeField
+:DocumentTypeField rdf:type owl:Class ;
+                   rdfs:subClassOf :PublicationMetadataField ;
+                   rdfs:label "document type field" ;
+                   :semanticProperty dcterms:type ,
+                                     schema:genre ;
+                   :sourceYamlPath "publication.document_type" .
+
+
+###  https://example.org/CBS_projects/EmbargoPeriod
+:EmbargoPeriod rdf:type owl:Class ;
+               rdfs:subClassOf time:Interval ;
+               rdfs:comment "Period during which a publication or associated dataset is closed before becoming open access." ;
+               rdfs:label "embargo period" .
+
+
+###  https://example.org/CBS_projects/EthicsApproval
+:EthicsApproval rdf:type owl:Class ;
+                rdfs:subClassOf :GovernanceRecord ;
+                rdfs:comment "Approval or acceptance issued by a responsible ethics committee for a study." ;
+                rdfs:label "ethics approval" ;
+                skos:closeMatch schema:Review ,
+                                dpv:CertificationSeal ;
+                :sourceYamlPath "Project.ethics_approval" .
+
+
+###  https://example.org/CBS_projects/EthicsApprovalField
+:EthicsApprovalField rdf:type owl:Class ;
+                     rdfs:subClassOf :AccessMetadataField ;
+                     rdfs:label "ethics approval field" ;
+                     :sourceYamlPath "Project.ethics_approval" .
+
+
+###  https://example.org/CBS_projects/EthicsCommittee
+:EthicsCommittee rdf:type owl:Class ;
+                 rdfs:subClassOf org:Organization ;
+                 rdfs:label "ethics committee" ;
+                 skos:closeMatch schema:Organization .
+
+
+###  https://example.org/CBS_projects/FrozenDataset
+:FrozenDataset rdf:type owl:Class ;
+               rdfs:subClassOf :Dataset ;
+               rdfs:comment "A read-only dataset version prepared for publication and persistent referencing." ;
+               rdfs:label "frozen dataset" ;
+               skos:closeMatch prov:Entity ,
+                               schema:Dataset ;
+               :sourceYamlPath "publication.frozen_published_dataset" .
+
+
+###  https://example.org/CBS_projects/FrozenPublishedDatasetField
+:FrozenPublishedDatasetField rdf:type owl:Class ;
+                             rdfs:subClassOf :RelationshipMetadataField ;
+                             rdfs:label "frozen published dataset field" ;
+                             :semanticProperty dcterms:identifier ,
+                                               schema:version ;
+                             :sourceYamlPath "publication.frozen_published_dataset" .
+
+
+###  https://example.org/CBS_projects/Funder
+:Funder rdf:type owl:Class ;
+        rdfs:subClassOf prov:Agent ,
+                        schema:Organization ;
+        rdfs:label "funder" ;
+        :semanticProperty schema:funder .
+
+
+###  https://example.org/CBS_projects/FundingField
+:FundingField rdf:type owl:Class ;
+              rdfs:subClassOf :PublicationMetadataField ;
+              rdfs:label "funding field" ;
+              :semanticProperty schema:funder ,
+                                schema:funding ;
+              :sourceYamlPath "publication.funding" .
+
+
+###  https://example.org/CBS_projects/FundingInformation
+:FundingInformation rdf:type owl:Class ;
+                    rdfs:subClassOf :PublicationMetadata ;
+                    rdfs:label "funding information" ;
+                    skos:closeMatch datacite:FundingReference ;
+                    :semanticProperty schema:funding ;
+                    :sourceYamlPath "publication.funding" .
+
+
+###  https://example.org/CBS_projects/GelPhantom
+:GelPhantom rdf:type owl:Class ;
+            rdfs:subClassOf :PhantomSpecimen ;
+            rdfs:label "gel phantom" .
+
+
+###  https://example.org/CBS_projects/GovernanceRecord
+:GovernanceRecord rdf:type owl:Class ;
+                  rdfs:subClassOf prov:Entity ,
+                                  :Document ;
+                  rdfs:label "governance record" .
+
+
+###  https://example.org/CBS_projects/Grant
+:Grant rdf:type owl:Class ;
+       rdfs:subClassOf schema:Grant ;
+       rdfs:label "grant" ;
+       skos:closeMatch datacite:FundingReference .
+
+
+###  https://example.org/CBS_projects/HandednessAttribute
+:HandednessAttribute rdf:type owl:Class ;
+                     rdfs:subClassOf :BehavioralMeasure ;
+                     rdfs:label "handedness attribute" .
+
+
+###  https://example.org/CBS_projects/HominidSpecimen
+:HominidSpecimen rdf:type owl:Class ;
+                 rdfs:subClassOf :LivingSpecimen ;
+                 rdfs:label "hominid specimen" ;
+                 skos:closeMatch <http://purl.obolibrary.org/obo/NCBITaxon_9604> .
+
+
+###  https://example.org/CBS_projects/HumanParticipant
+:HumanParticipant rdf:type owl:Class ;
+                  rdfs:subClassOf :LivingSpecimen ,
+                                  dpv:DataSubject ;
+                  rdfs:comment "A human participant in MRI or related experimental data acquisition." ;
+                  rdfs:label "human participant" ;
+                  skos:closeMatch <http://purl.obolibrary.org/obo/NCBITaxon_9606> ,
+                                  <http://purl.obolibrary.org/obo/OBI_0000097> .
+
+
+###  https://example.org/CBS_projects/Identifier
+:Identifier rdf:type owl:Class ;
+            rdfs:subClassOf datacite:Identifier ,
+                            adms:Identifier ;
+            rdfs:comment "A persistent or local identifier used to connect projects, NOMAD entries, datasets, people, organizations, publications, and internal systems." ;
+            rdfs:label "identifier" ;
+            :semanticProperty dcterms:identifier ,
+                              schema:identifier .
+
+
+###  https://example.org/CBS_projects/IdentifierMetadataField
+:IdentifierMetadataField rdf:type owl:Class ;
+                         rdfs:subClassOf :MetadataFieldConcept ;
+                         rdfs:label "identifier metadata field" .
+
+
+###  https://example.org/CBS_projects/ImagingData
+:ImagingData rdf:type owl:Class ;
+             rdfs:subClassOf :ResearchData ;
+             rdfs:label "imaging data" .
+
+
+###  https://example.org/CBS_projects/InstituteOnlyAccess
+:InstituteOnlyAccess rdf:type owl:Class ;
+                     rdfs:subClassOf :AccessCondition ;
+                     rdfs:comment "Access limited to the institute. OASIS may already cover internal access." ;
+                     rdfs:label "institute-only access" .
+
+
+###  https://example.org/CBS_projects/InstituteWideAccess
+:InstituteWideAccess rdf:type owl:Class ;
+                     rdfs:subClassOf :InstituteOnlyAccess ;
+                     rdfs:label "institute-wide access" .
+
+
+###  https://example.org/CBS_projects/InstitutionalEmailAddress
+:InstitutionalEmailAddress rdf:type owl:Class ;
+                           rdfs:subClassOf :ContactPoint ;
+                           rdfs:label "institutional email address" ;
+                           skos:closeMatch vcard:Email ;
+                           :semanticProperty schema:email .
+
+
+###  https://example.org/CBS_projects/Instrument
+:Instrument rdf:type owl:Class ;
+            rdfs:subClassOf prov:Agent ;
+            rdfs:label "instrument" ;
+            skos:closeMatch <http://purl.obolibrary.org/obo/OBI_0000968> .
+
+
+###  https://example.org/CBS_projects/IntermediateDataset
+:IntermediateDataset rdf:type owl:Class ;
+                     rdfs:subClassOf :Dataset ;
+                     rdfs:label "intermediate dataset" .
+
+
+###  https://example.org/CBS_projects/InternalDatabaseIdentifier
+:InternalDatabaseIdentifier rdf:type owl:Class ;
+                            rdfs:subClassOf :Identifier ;
+                            rdfs:label "internal database identifier" .
+
+
+###  https://example.org/CBS_projects/Journal
+:Journal rdf:type owl:Class ;
+         rdfs:subClassOf fabio:Journal ,
+                         schema:Periodical ;
+         rdfs:label "journal" .
+
+
+###  https://example.org/CBS_projects/JournalArticle
+:JournalArticle rdf:type owl:Class ;
+                rdfs:subClassOf fabio:JournalArticle ,
+                                :Paper ;
+                rdfs:label "journal article" .
+
+
+###  https://example.org/CBS_projects/License
+:License rdf:type owl:Class ;
+         rdfs:subClassOf cc:License ,
+                         spdx:License ;
+         rdfs:label "license" ;
+         :semanticProperty dcterms:license .
+
+
+###  https://example.org/CBS_projects/LivingSpecimen
+:LivingSpecimen rdf:type owl:Class ;
+                rdfs:subClassOf :Specimen ;
+                rdfs:comment "A living experimental specimen, generally hominid and often brain-related in this domain." ;
+                rdfs:label "living specimen" ;
+                skos:closeMatch <http://purl.obolibrary.org/obo/OBI_0100026> .
+
+
+###  https://example.org/CBS_projects/LongTermContactAddress
+:LongTermContactAddress rdf:type owl:Class ;
+                        rdfs:subClassOf :ContactPoint ;
+                        rdfs:label "long-term contact address" .
+
+
+###  https://example.org/CBS_projects/MRIData
+:MRIData rdf:type owl:Class ;
+         rdfs:subClassOf :ImagingData ;
+         rdfs:comment "MRI data are the initial focus for this NOMAD workflow." ;
+         rdfs:label "MRI data" ;
+         skos:closeMatch schema:MedicalImagingTechnique .
+
+
+###  https://example.org/CBS_projects/MRIScanner
+:MRIScanner rdf:type owl:Class ;
+            rdfs:subClassOf :Scanner ;
+            rdfs:comment "Source instrument for MRI raw data and acquisition metadata." ;
+            rdfs:label "MRI scanner" .
+
+
+###  https://example.org/CBS_projects/ManualDocumentation
+:ManualDocumentation rdf:type owl:Class ;
+                     rdfs:subClassOf :MetadataRecord ;
+                     rdfs:comment "Human-created documentation used where automated capture is incomplete or unreliable." ;
+                     rdfs:label "manual documentation" .
+
+
+###  https://example.org/CBS_projects/MetadataFieldConcept
+:MetadataFieldConcept rdf:type owl:Class ;
+                      rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000030> ,
+                                      :CBSProjectsConcept ;
+                      rdfs:comment "A class representing the meaning of a YAML form field, not the literal value entered in that field." ;
+                      rdfs:label "metadata field concept" .
+
+
+###  https://example.org/CBS_projects/MetadataOfDocumentField
+:MetadataOfDocumentField rdf:type owl:Class ;
+                         rdfs:subClassOf :PublicationMetadataField ;
+                         rdfs:comment "The original YAML key contains a typo: metadata_of_dokument." ;
+                         rdfs:label "metadata of document field" ;
+                         :semanticProperty dcterms:bibliographicCitation ,
+                                           schema:citation ;
+                         :sourceYamlPath "publication.metadata_of_dokument" .
+
+
+###  https://example.org/CBS_projects/MetadataRecord
+:MetadataRecord rdf:type owl:Class ;
+                rdfs:subClassOf <http://purl.obolibrary.org/obo/IAO_0000030> ,
+                                prov:Entity ;
+                rdfs:comment "A record describing data, processing, access, publication, or project context." ;
+                rdfs:label "metadata record" ;
+                skos:closeMatch dcat:Resource ,
+                                schema:CreativeWork .
+
+
+###  https://example.org/CBS_projects/MethodDescription
+:MethodDescription rdf:type owl:Class ;
+                   rdfs:subClassOf :PublicationMetadata ;
+                   rdfs:comment "Methods used in a publication, including software, programs, protocols, operating systems, and versions." ;
+                   rdfs:label "method description" ;
+                   :sourceYamlPath "publication.methods_applied" .
+
+
+###  https://example.org/CBS_projects/MethodsAppliedField
+:MethodsAppliedField rdf:type owl:Class ;
+                     rdfs:subClassOf :ProvenanceMetadataField ;
+                     rdfs:label "methods applied field" ;
+                     :semanticProperty prov:used ,
+                                       prov:wasGeneratedBy ;
+                     :sourceYamlPath "publication.methods_applied" .
+
+
+###  https://example.org/CBS_projects/NOMADEntry
+:NOMADEntry rdf:type owl:Class ;
+            rdfs:subClassOf dcat:Resource ,
+                            prov:Entity ,
+                            :MetadataRecord ;
+            rdfs:comment "A NOMAD record that receives a NOMAD identifier and can describe a project, dataset, processing result, or publication-related resource." ;
+            rdfs:label "NOMAD entry" ;
+            skos:closeMatch schema:DataCatalog .
+
+
+###  https://example.org/CBS_projects/NOMADIdentifier
+:NOMADIdentifier rdf:type owl:Class ;
+                 rdfs:subClassOf :Identifier ;
+                 rdfs:comment "Identifier assigned to NOMAD entries while datasets are still open and modifiable." ;
+                 rdfs:label "NOMAD identifier" .
+
+
+###  https://example.org/CBS_projects/NOMADPlatform
+:NOMADPlatform rdf:type owl:Class ;
+               rdfs:subClassOf :ResearchDataManagementPlatform ;
+               rdfs:comment "NOMAD as the institute's central metadata and research data management platform." ;
+               rdfs:label "NOMAD platform" .
+
+
+###  https://example.org/CBS_projects/NonCommercialLicense
+:NonCommercialLicense rdf:type owl:Class ;
+                      rdfs:subClassOf :CreativeCommonsLicense ;
+                      rdfs:label "non-commercial license" ;
+                      skos:closeMatch cc:NonCommercial .
+
+
+###  https://example.org/CBS_projects/NotesWikiPagesField
+:NotesWikiPagesField rdf:type owl:Class ;
+                     rdfs:subClassOf :RelationshipMetadataField ;
+                     rdfs:label "notes wiki pages field" ;
+                     :semanticProperty dcterms:relation ;
+                     :sourceYamlPath "Project.notes_wikipages" .
+
+
+###  https://example.org/CBS_projects/OASISInternalArea
+:OASISInternalArea rdf:type owl:Class ;
+                   rdfs:subClassOf :AccessEnvironment ;
+                   rdfs:comment "Institute-internal NOMAD area, contrasted with openly accessible NOMAD content." ;
+                   rdfs:label "OASIS internal area" .
+
+
+###  https://example.org/CBS_projects/ORCIDIdentifier
+:ORCIDIdentifier rdf:type owl:Class ;
+                 rdfs:subClassOf datacite:PersonalIdentifier ,
+                                 :Identifier ;
+                 rdfs:comment "Identifier for researchers and their contributions." ;
+                 rdfs:label "ORCID identifier" ;
+                 :semanticProperty schema:identifier .
+
+
+###  https://example.org/CBS_projects/OfflineArchive
+:OfflineArchive rdf:type owl:Class ;
+                rdfs:subClassOf :Archive ;
+                rdfs:comment "Secure offline archive environment used after online retention, for example for MRI data after four years." ;
+                rdfs:label "offline archive" .
+
+
+###  https://example.org/CBS_projects/OnlineStorage
+:OnlineStorage rdf:type owl:Class ;
+               rdfs:subClassOf :StorageSystem ;
+               rdfs:label "online storage" .
+
+
+###  https://example.org/CBS_projects/OpenAccess
+:OpenAccess rdf:type owl:Class ;
+            rdfs:subClassOf :PublicAccess ;
+            rdfs:label "open access" ;
+            :semanticProperty bibo:openAccess .
+
+
+###  https://example.org/CBS_projects/OpenAccessLicense
+:OpenAccessLicense rdf:type owl:Class ;
+                   rdfs:subClassOf :License ;
+                   rdfs:label "open access license" .
+
+
+###  https://example.org/CBS_projects/OpenlyAccessibleArea
+:OpenlyAccessibleArea rdf:type owl:Class ;
+                      rdfs:subClassOf :AccessEnvironment ;
+                      rdfs:comment "Open NOMAD area whose metadata records can support public discovery and indexing." ;
+                      rdfs:label "openly accessible area" ;
+                      skos:closeMatch dcat:Catalog .
+
+
+###  https://example.org/CBS_projects/OperatingSystem
+:OperatingSystem rdf:type owl:Class ;
+                 rdfs:subClassOf schema:SoftwareApplication ;
+                 rdfs:label "operating system" .
+
+
+###  https://example.org/CBS_projects/OtherIdentifier
+:OtherIdentifier rdf:type owl:Class ;
+                 rdfs:subClassOf :Identifier ;
+                 rdfs:comment "Flexible additional identifier beyond the primary key." ;
+                 rdfs:label "other identifier" ;
+                 :sourceYamlPath "data.other_keys" .
+
+
+###  https://example.org/CBS_projects/OtherKeysField
+:OtherKeysField rdf:type owl:Class ;
+                rdfs:subClassOf :IdentifierMetadataField ;
+                rdfs:label "other keys field" ;
+                :semanticProperty dcterms:identifier ,
+                                  adms:identifier ,
+                                  schema:identifier ;
+                :sourceYamlPath "data.other_keys" .
+
+
+###  https://example.org/CBS_projects/Paper
+:Paper rdf:type owl:Class ;
+       rdfs:subClassOf fabio:ResearchPaper ,
+                       :Publication ,
+                       schema:ScholarlyArticle ;
+       rdfs:label "paper" ;
+       :sourceYamlPath "publication.document_type" .
+
+
+###  https://example.org/CBS_projects/ParticipantInformation
+:ParticipantInformation rdf:type owl:Class ;
+                        rdfs:subClassOf :MetadataRecord ,
+                                        dpv:PersonalData ;
+                        rdfs:comment "Participant-related information stored separately in the institute's internal database due to data protection regulations." ;
+                        rdfs:label "participant information" .
+
+
+###  https://example.org/CBS_projects/PhantomSpecimen
+:PhantomSpecimen rdf:type owl:Class ;
+                 rdfs:subClassOf :Subject ;
+                 rdfs:comment "A non-biological experimental object used as a phantom, generally a plastic sphere filled with gel and possibly internal structure." ;
+                 rdfs:label "phantom specimen" ;
+                 skos:closeMatch schema:Product .
+
+
+###  https://example.org/CBS_projects/PhysiologicalAttribute
+:PhysiologicalAttribute rdf:type owl:Class ;
+                        rdfs:subClassOf :SpecimenAttribute ;
+                        rdfs:label "physiological attribute" .
+
+
+###  https://example.org/CBS_projects/PlasticSpherePhantom
+:PlasticSpherePhantom rdf:type owl:Class ;
+                      rdfs:subClassOf :GelPhantom ;
+                      rdfs:label "plastic sphere phantom" .
+
+
+###  https://example.org/CBS_projects/PostMortemSpecimen
+:PostMortemSpecimen rdf:type owl:Class ;
+                    rdfs:subClassOf :Specimen ;
+                    rdfs:comment "A specimen acquired or studied after death, generally brain-related in the current domain model." ;
+                    rdfs:label "post mortem specimen" .
+
+
+###  https://example.org/CBS_projects/Poster
+:Poster rdf:type owl:Class ;
+        rdfs:subClassOf fabio:ConferencePoster ,
+                        :ScientificCommunication ;
+        rdfs:label "poster" .
+
+
+###  https://example.org/CBS_projects/Presentation
+:Presentation rdf:type owl:Class ;
+              rdfs:subClassOf fabio:Presentation ,
+                              :ScientificCommunication ;
+              rdfs:label "presentation" .
+
+
+###  https://example.org/CBS_projects/PrimaryData
+:PrimaryData rdf:type owl:Class ;
+             rdfs:subClassOf :RawData ;
+             rdfs:comment "Primary data discovery is the first stated use case." ;
+             rdfs:label "primary data" .
+
+
+###  https://example.org/CBS_projects/ProcessingDatasetSet
+:ProcessingDatasetSet rdf:type owl:Class ;
+                      rdfs:subClassOf :RelationshipMetadataField ;
+                      rdfs:comment "Collection of source, intermediate, and derived datasets associated with processing workflows." ;
+                      rdfs:label "processing dataset set" ;
+                      :sourceYamlPath "data_lifecycle.processing_datasets" .
+
+
+###  https://example.org/CBS_projects/ProcessingDatasetsField
+:ProcessingDatasetsField rdf:type owl:Class ;
+                         rdfs:subClassOf :RelationshipMetadataField ;
+                         rdfs:label "processing datasets field" ;
+                         :semanticProperty dcterms:source ,
+                                           prov:used ,
+                                           prov:wasDerivedFrom ;
+                         :sourceYamlPath "data_lifecycle.processing_datasets" .
+
+
+###  https://example.org/CBS_projects/ProcessingInformationField
+:ProcessingInformationField rdf:type owl:Class ;
+                            rdfs:subClassOf :ProvenanceMetadataField ;
+                            rdfs:label "processing information field" ;
+                            :semanticProperty dcterms:provenance ,
+                                              prov:wasGeneratedBy ;
+                            :sourceYamlPath "data_lifecycle.processing_information" .
+
+
+###  https://example.org/CBS_projects/ProcessingStep
+:ProcessingStep rdf:type owl:Class ;
+                rdfs:subClassOf prov:Activity ;
+                rdfs:label "processing step" .
+
+
+###  https://example.org/CBS_projects/ProcessingWikiPageField
+:ProcessingWikiPageField rdf:type owl:Class ;
+                         rdfs:subClassOf :RelationshipMetadataField ;
+                         rdfs:label "processing wiki page field" ;
+                         :semanticProperty dcterms:relation ,
+                                           prov:wasInformedBy ;
+                         :sourceYamlPath "data_lifecycle.processing_on_wikipage" .
+
+
+###  https://example.org/CBS_projects/ProcessingWorkflow
+:ProcessingWorkflow rdf:type owl:Class ;
+                    rdfs:subClassOf prov:Activity ,
+                                    schema:Action ;
+                    rdfs:comment "A data generation, processing, transformation, or analysis workflow." ;
+                    rdfs:label "processing workflow" ;
+                    :sourceYamlPath "data_lifecycle.processing_information" .
+
+
+###  https://example.org/CBS_projects/Project
+:Project rdf:type owl:Class ;
+         rdfs:subClassOf prov:Activity ,
+                         :CBSProjectsConcept ,
+                         schema:ResearchProject ;
+         rdfs:comment "A scientific project that produces, reuses, documents, processes, freezes, or publishes research data." ;
+         rdfs:label "project" ;
+         skos:closeMatch <http://purl.obolibrary.org/obo/OBI_0000066> ;
+         :sourceYamlPath "Project" .
+
+
+###  https://example.org/CBS_projects/ProjectConsentsField
+:ProjectConsentsField rdf:type owl:Class ;
+                      rdfs:subClassOf :AccessMetadataField ;
+                      rdfs:label "project consents field" ;
+                      :semanticProperty dcterms:accessRights ;
+                      :sourceYamlPath "Project.consents" .
+
+
+###  https://example.org/CBS_projects/ProjectDescriptionField
+:ProjectDescriptionField rdf:type owl:Class ;
+                         rdfs:subClassOf :DescriptiveMetadataField ;
+                         rdfs:label "project description field" ;
+                         :semanticProperty dcterms:description ,
+                                           schema:description ;
+                         :sourceYamlPath "Project.description" .
+
+
+###  https://example.org/CBS_projects/ProjectIDField
+:ProjectIDField rdf:type owl:Class ;
+                rdfs:subClassOf :IdentifierMetadataField ;
+                rdfs:label "project ID field" ;
+                :semanticProperty dcterms:identifier ,
+                                  schema:identifier ;
+                :sourceYamlPath "Project.project_ID" .
+
+
+###  https://example.org/CBS_projects/ProjectIdentifier
+:ProjectIdentifier rdf:type owl:Class ;
+                   rdfs:subClassOf :Identifier ;
+                   rdfs:comment "Internal project ID connecting NOMAD entries with the institute's internal database." ;
+                   rdfs:label "project identifier" ;
+                   :sourceYamlPath "Project.project_ID" .
+
+
+###  https://example.org/CBS_projects/ProjectProposal
+:ProjectProposal rdf:type owl:Class ;
+                 rdfs:subClassOf prov:Plan ,
+                                 :Document ;
+                 rdfs:comment "A project proposal describing research objectives, hypotheses, and planned methodology. The current working assumption is that this may remain text, pending further domain input." ;
+                 rdfs:label "project proposal" ;
+                 skos:closeMatch schema:CreativeWork ;
+                 :sourceYamlPath "Project.poject_proposal" .
+
+
+###  https://example.org/CBS_projects/ProjectProposalField
+:ProjectProposalField rdf:type owl:Class ;
+                      rdfs:subClassOf :RelationshipMetadataField ;
+                      rdfs:comment "The original YAML key contains a typo: poject_proposal." ;
+                      rdfs:label "project proposal field" ;
+                      :semanticProperty dcterms:hasPart ;
+                      :sourceYamlPath "Project.poject_proposal" .
+
+
+###  https://example.org/CBS_projects/ProjectRole
+:ProjectRole rdf:type owl:Class ;
+             rdfs:subClassOf org:Role ,
+                             prov:Role ;
+             rdfs:comment "A responsibility or role held by a scientist within a project." ;
+             rdfs:label "project role" .
+
+
+###  https://example.org/CBS_projects/ProjectTitleField
+:ProjectTitleField rdf:type owl:Class ;
+                   rdfs:subClassOf :DescriptiveMetadataField ;
+                   rdfs:comment "Records the title of the project, not necessarily the title of an associated publication." ;
+                   rdfs:label "project title field" ;
+                   :semanticProperty dcterms:title ,
+                                     schema:name ;
+                   :sourceYamlPath "Project.title" .
+
+
+###  https://example.org/CBS_projects/ProvenanceMetadataField
+:ProvenanceMetadataField rdf:type owl:Class ;
+                         rdfs:subClassOf :MetadataFieldConcept ;
+                         rdfs:label "provenance metadata field" .
+
+
+###  https://example.org/CBS_projects/ProvenanceRecord
+:ProvenanceRecord rdf:type owl:Class ;
+                  rdfs:subClassOf :MetadataRecord ;
+                  rdfs:comment "A record that supports reconstruction of processing steps and transformations." ;
+                  rdfs:label "provenance record" ;
+                  skos:closeMatch prov:Bundle .
+
+
+###  https://example.org/CBS_projects/PsychologicalQuestionnaireData
+:PsychologicalQuestionnaireData rdf:type owl:Class ;
+                                rdfs:subClassOf :ResearchData ;
+                                rdfs:comment "A non-MRI data type explicitly mentioned as part of the institute's heterogeneous data landscape." ;
+                                rdfs:label "psychological questionnaire data" .
+
+
+###  https://example.org/CBS_projects/PuReIdentifier
+:PuReIdentifier rdf:type owl:Class ;
+                rdfs:subClassOf :Identifier ;
+                rdfs:comment "Identifier for records in the institutional PuRe repository." ;
+                rdfs:label "PuRe identifier" .
+
+
+###  https://example.org/CBS_projects/PubMedIdentifier
+:PubMedIdentifier rdf:type owl:Class ;
+                  rdfs:subClassOf :Identifier ;
+                  rdfs:label "PubMed identifier" ;
+                  :semanticProperty bibo:pmid .
+
+
+###  https://example.org/CBS_projects/PublicAccess
+:PublicAccess rdf:type owl:Class ;
+              rdfs:subClassOf :AccessCondition ;
+              rdfs:label "public access" ;
+              :semanticProperty schema:publicAccess .
+
+
+###  https://example.org/CBS_projects/Publication
+:Publication rdf:type owl:Class ;
+             rdfs:subClassOf fabio:Expression ,
+                             schema:CreativeWork ;
+             rdfs:comment "Scientific publication or communication related to a project or dataset." ;
+             rdfs:label "publication" ;
+             :sourceYamlPath "publication" .
+
+
+###  https://example.org/CBS_projects/PublicationExport
+:PublicationExport rdf:type owl:Class ;
+                   rdfs:subClassOf prov:Activity ;
+                   rdfs:comment "Export of publication metadata or dataset metadata to support publication workflows." ;
+                   rdfs:label "publication export" .
+
+
+###  https://example.org/CBS_projects/PublicationMetadata
+:PublicationMetadata rdf:type owl:Class ;
+                     rdfs:subClassOf :MetadataRecord ;
+                     rdfs:label "publication metadata" ;
+                     :semanticProperty dcterms:bibliographicCitation ,
+                                       schema:citation ;
+                     :sourceYamlPath "publication.metadata_of_dokument" .
+
+
+###  https://example.org/CBS_projects/PublicationMetadataField
+:PublicationMetadataField rdf:type owl:Class ;
+                          rdfs:subClassOf :MetadataFieldConcept ;
+                          rdfs:label "publication metadata field" .
+
+
+###  https://example.org/CBS_projects/PublishedDataset
+:PublishedDataset rdf:type owl:Class ;
+                  rdfs:subClassOf :FrozenDataset ;
+                  rdfs:label "published dataset" ;
+                  skos:closeMatch datacite:Resource ,
+                                  schema:Dataset .
+
+
+###  https://example.org/CBS_projects/Publisher
+:Publisher rdf:type owl:Class ;
+           rdfs:subClassOf prov:Agent ,
+                           schema:Organization ;
+           rdfs:label "publisher" .
+
+
+###  https://example.org/CBS_projects/RORIdentifier
+:RORIdentifier rdf:type owl:Class ;
+               rdfs:subClassOf :Identifier ;
+               rdfs:comment "Identifier for organizations such as institutes or funders." ;
+               rdfs:label "ROR identifier" .
+
+
+###  https://example.org/CBS_projects/RawData
+:RawData rdf:type owl:Class ;
+         rdfs:subClassOf :ResearchData ;
+         rdfs:comment "Data originating directly from an acquisition source such as an MRI scanner." ;
+         rdfs:label "raw data" ;
+         skos:closeMatch prov:Entity .
+
+
+###  https://example.org/CBS_projects/ReferencesToDataField
+:ReferencesToDataField rdf:type owl:Class ;
+                       rdfs:subClassOf :RelationshipMetadataField ;
+                       rdfs:label "references to data field" ;
+                       :semanticProperty dcterms:references ,
+                                         cito:cites ;
+                       :sourceYamlPath "publication.references_to_data" .
+
+
+###  https://example.org/CBS_projects/ReferencingProjectField
+:ReferencingProjectField rdf:type owl:Class ;
+                         rdfs:subClassOf :RelationshipMetadataField ;
+                         rdfs:label "referencing the project field" ;
+                         :semanticProperty dcterms:isPartOf ,
+                                           schema:isPartOf ;
+                         :sourceYamlPath "data.referencing_the_project" .
+
+
+###  https://example.org/CBS_projects/RelationshipMetadataField
+:RelationshipMetadataField rdf:type owl:Class ;
+                           rdfs:subClassOf :MetadataFieldConcept ;
+                           rdfs:label "relationship metadata field" .
+
+
+###  https://example.org/CBS_projects/Report
+:Report rdf:type owl:Class ;
+        rdfs:subClassOf fabio:ReportDocument ,
+                        :Publication ;
+        rdfs:label "report" .
+
+
+###  https://example.org/CBS_projects/RequiredAttributeSet
+:RequiredAttributeSet rdf:type owl:Class ;
+                      rdfs:subClassOf :CBSProjectsConcept ;
+                      rdfs:comment "Participant or specimen characteristics that should be recorded for study interpretation and analysis." ;
+                      rdfs:label "required attribute set" ;
+                      :sourceYamlPath "Project.required_attributes" .
+
+
+###  https://example.org/CBS_projects/RequiredAttributesField
+:RequiredAttributesField rdf:type owl:Class ;
+                         rdfs:subClassOf :DescriptiveMetadataField ;
+                         rdfs:label "required attributes field" ;
+                         :semanticProperty schema:variableMeasured ;
+                         :sourceYamlPath "Project.required_attributes" .
+
+
+###  https://example.org/CBS_projects/ResearchData
+:ResearchData rdf:type owl:Class ;
+              rdfs:subClassOf :Dataset ;
+              rdfs:label "research data" .
+
+
+###  https://example.org/CBS_projects/ResearchDataDiscoveryInterface
+:ResearchDataDiscoveryInterface rdf:type owl:Class ;
+                                rdfs:subClassOf :ResearchDataManagementPlatform ;
+                                rdfs:comment "A tailored search interface for targeted research data discovery in NOMAD." ;
+                                rdfs:label "research data discovery interface" ;
+                                skos:closeMatch schema:SearchAction .
+
+
+###  https://example.org/CBS_projects/ResearchDataManagementPlatform
+:ResearchDataManagementPlatform rdf:type owl:Class ;
+                                rdfs:subClassOf :CBSProjectsConcept ,
+                                                schema:SoftwareApplication ;
+                                rdfs:comment "A central platform for managing, discovering, referencing, and publishing research data and metadata." ;
+                                rdfs:label "research data management platform" ;
+                                skos:closeMatch dcat:Catalog .
+
+
+###  https://example.org/CBS_projects/Researcher
+:Researcher rdf:type owl:Class ;
+            rdfs:subClassOf :Scientist ;
+            rdfs:label "researcher" ;
+            skos:closeMatch prov:Agent ,
+                            schema:Person .
+
+
+###  https://example.org/CBS_projects/ResearcherField
+:ResearcherField rdf:type owl:Class ;
+                 rdfs:subClassOf :RelationshipMetadataField ;
+                 rdfs:label "researcher field" ;
+                 :semanticProperty dcterms:contributor ,
+                                   prov:wasAssociatedWith ,
+                                   schema:contributor ;
+                 :sourceYamlPath "researcher.researcher" .
+
+
+###  https://example.org/CBS_projects/ResearcherParticipation
+:ResearcherParticipation rdf:type owl:Class ;
+                         rdfs:subClassOf org:Membership ,
+                                         prov:Association ;
+                         rdfs:comment "The relation-like entity connecting a scientist, a project, and a role." ;
+                         rdfs:label "researcher participation" .
+
+
+###  https://example.org/CBS_projects/CBSProjectsConcept
+:CBSProjectsConcept rdf:type owl:Class ;
+              rdfs:comment "Top local class for concepts needed to describe projects, experimental data, publications, scientists, access conditions, and processing workflows." ;
+              rdfs:label "CBS_Projects concept" .
+
+
+###  https://example.org/CBS_projects/Scanner
+:Scanner rdf:type owl:Class ;
+         rdfs:subClassOf <http://purl.obolibrary.org/obo/OBI_0000968> ,
+                         :Instrument ;
+         rdfs:label "scanner" ;
+         skos:closeMatch schema:MedicalDevice .
+
+
+###  https://example.org/CBS_projects/ScientificCommunication
+:ScientificCommunication rdf:type owl:Class ;
+                         rdfs:subClassOf :Publication ;
+                         rdfs:label "scientific communication" .
+
+
+###  https://example.org/CBS_projects/Scientist
+:Scientist rdf:type owl:Class ;
+           rdfs:subClassOf prov:Agent ,
+                           foaf:Person ,
+                           schema:Person ;
+           rdfs:comment "A researcher, contributor, study leader, or responsible person associated with a project." ;
+           rdfs:label "scientist" ;
+           skos:closeMatch org:Role ;
+           :sourceYamlPath "researcher.researcher" .
+
+
+###  https://example.org/CBS_projects/Script
+:Script rdf:type owl:Class ;
+        rdfs:subClassOf prov:Entity ,
+                        schema:SoftwareSourceCode ;
+        rdfs:label "script" ;
+        :semanticProperty codemeta:codeRepository .
+
+
+###  https://example.org/CBS_projects/SearchEngineIndexableRecord
+:SearchEngineIndexableRecord rdf:type owl:Class ;
+                             rdfs:subClassOf :MetadataRecord ,
+                                             schema:WebPage ;
+                             rdfs:comment "A NOMAD metadata record shaped so that common search engines can index and expose it." ;
+                             rdfs:label "search engine indexable record" .
+
+
+###  https://example.org/CBS_projects/SexGenderAttribute
+:SexGenderAttribute rdf:type owl:Class ;
+                    rdfs:subClassOf :DemographicAttribute ;
+                    rdfs:label "sex or gender attribute" ;
+                    :semanticProperty schema:gender .
+
+
+###  https://example.org/CBS_projects/SoftwareTool
+:SoftwareTool rdf:type owl:Class ;
+              rdfs:subClassOf prov:SoftwareAgent ,
+                              schema:SoftwareApplication ;
+              rdfs:comment "Software used for processing data." ;
+              rdfs:label "software tool" ;
+              :semanticProperty codemeta:softwareRequirements .
+
+
+###  https://example.org/CBS_projects/SoftwareVersion
+:SoftwareVersion rdf:type owl:Class ;
+                 rdfs:subClassOf :Identifier ;
+                 rdfs:label "software version" ;
+                 :semanticProperty schema:softwareVersion .
+
+
+###  https://example.org/CBS_projects/SourceDataset
+:SourceDataset rdf:type owl:Class ;
+               rdfs:subClassOf :Dataset ;
+               rdfs:label "source dataset" ;
+               :semanticProperty dcterms:source ,
+                                 prov:used .
+
+
+###  https://example.org/CBS_projects/SpecializedStorageSystem
+:SpecializedStorageSystem rdf:type owl:Class ;
+                          rdfs:subClassOf :StorageSystem ;
+                          rdfs:label "specialized storage system" .
+
+
+###  https://example.org/CBS_projects/Specimen
+:Specimen rdf:type owl:Class ;
+          rdfs:subClassOf <http://purl.obolibrary.org/obo/OBI_0100051> ,
+                          :Subject ;
+          rdfs:comment "A material subject or sample studied in an experiment." ;
+          rdfs:label "specimen" ;
+          skos:closeMatch schema:BioSample .
+
+
+###  https://example.org/CBS_projects/SpecimenAttribute
+:SpecimenAttribute rdf:type owl:Class ;
+                   rdfs:subClassOf :CBSProjectsConcept ;
+                   rdfs:comment "A recorded characteristic of a participant, subject, specimen, or phantom." ;
+                   rdfs:label "specimen attribute" ;
+                   :semanticProperty schema:variableMeasured ;
+                   :sourceYamlPath "data.attributes_of_specimen" .
+
+
+###  https://example.org/CBS_projects/StorageAndArchiveField
+:StorageAndArchiveField rdf:type owl:Class ;
+                        rdfs:subClassOf :RelationshipMetadataField ;
+                        rdfs:label "storage and archive field" ;
+                        :semanticProperty dcterms:accessRights ,
+                                          dcterms:provenance ;
+                        :sourceYamlPath "data_lifecycle.storage_and_archive" .
+
+
+###  https://example.org/CBS_projects/StorageSystem
+:StorageSystem rdf:type owl:Class ;
+               rdfs:subClassOf :CBSProjectsConcept ;
+               rdfs:label "storage system" ;
+               skos:closeMatch dcat:DataService ;
+               :sourceYamlPath "data_lifecycle.storage_and_archive" .
+
+
+###  https://example.org/CBS_projects/StudyLeader
+:StudyLeader rdf:type owl:Class ;
+             rdfs:subClassOf org:Role ,
+                             :Researcher ;
+             rdfs:comment "The person leading the study for the researcher field." ;
+             rdfs:label "study leader" .
+
+
+###  https://example.org/CBS_projects/Subject
+:Subject rdf:type owl:Class ;
+         rdfs:subClassOf prov:Entity ,
+                         :CBSProjectsConcept ;
+         rdfs:comment "A broad experimental subject that can technically be anything, but usually falls into living specimen, post mortem specimen, or phantom." ;
+         rdfs:label "subject" ;
+         :sourceYamlPath "subject.subject" .
+
+
+###  https://example.org/CBS_projects/SubjectField
+:SubjectField rdf:type owl:Class ;
+              rdfs:subClassOf :RelationshipMetadataField ;
+              rdfs:comment "Should resolve to one or more subclasses of Subject: living specimen, post mortem specimen, or phantom specimen." ;
+              rdfs:label "subject field" ;
+              :sourceYamlPath "subject.subject" .
+
+
+###  https://example.org/CBS_projects/SupplementaryMaterial
+:SupplementaryMaterial rdf:type owl:Class ;
+                       rdfs:subClassOf prov:Entity ,
+                                       schema:CreativeWork ;
+                       rdfs:label "supplementary material" .
+
+
+###  https://example.org/CBS_projects/Thumbnail
+:Thumbnail rdf:type owl:Class ;
+           rdfs:subClassOf :DefaultPreview ;
+           rdfs:label "thumbnail" ;
+           :semanticProperty schema:thumbnail .
+
+
+###  https://example.org/CBS_projects/TimeUntilLeavingField
+:TimeUntilLeavingField rdf:type owl:Class ;
+                       rdfs:subClassOf :DescriptiveMetadataField ;
+                       rdfs:label "time until leaving field" ;
+                       :semanticProperty time:hasEnd ,
+                                         schema:endDate ;
+                       :sourceYamlPath "researcher.time_until_leaving" .
+
+
+###  https://example.org/CBS_projects/TissueSample
+:TissueSample rdf:type owl:Class ;
+              rdfs:subClassOf :Specimen ;
+              rdfs:label "tissue sample" ;
+              skos:closeMatch <http://purl.obolibrary.org/obo/OBI_0100051> ,
+                              schema:BioSample .
+
+
+###  https://example.org/CBS_projects/VolumePreview
+:VolumePreview rdf:type owl:Class ;
+               rdfs:subClassOf :DefaultPreview ;
+               rdfs:label "3D volume preview" .
+
+
+###  https://example.org/CBS_projects/WhitelistOnlyAccess
+:WhitelistOnlyAccess rdf:type owl:Class ;
+                     rdfs:subClassOf :AccessCondition ;
+                     rdfs:comment "Explicitly approved access for named people or groups." ;
+                     rdfs:label "whitelist-only access" .
+
+
+###  https://example.org/CBS_projects/WikiPage
+:WikiPage rdf:type owl:Class ;
+          rdfs:subClassOf :Document ,
+                          schema:WebPage ;
+          rdfs:comment "A wiki page used for notes, ideas, informal documentation, processing details, or evolving analysis documentation." ;
+          rdfs:label "wiki page" ;
+          skos:closeMatch foaf:Document ;
+          :sourceYamlPath "Project.notes_wikipages" .
+
+
+###  https://schema.org/Action
+schema:Action rdf:type owl:Class .
+
+
+###  https://schema.org/ContactPoint
+schema:ContactPoint rdf:type owl:Class .
+
+
+###  https://schema.org/CreativeWork
+schema:CreativeWork rdf:type owl:Class .
+
+
+###  https://schema.org/DataDownload
+schema:DataDownload rdf:type owl:Class .
+
+
+###  https://schema.org/Dataset
+schema:Dataset rdf:type owl:Class .
+
+
+###  https://schema.org/Grant
+schema:Grant rdf:type owl:Class .
+
+
+###  https://schema.org/MediaObject
+schema:MediaObject rdf:type owl:Class .
+
+
+###  https://schema.org/Organization
+schema:Organization rdf:type owl:Class .
+
+
+###  https://schema.org/Periodical
+schema:Periodical rdf:type owl:Class .
+
+
+###  https://schema.org/Person
+schema:Person rdf:type owl:Class .
+
+
+###  https://schema.org/ResearchProject
+schema:ResearchProject rdf:type owl:Class .
+
+
+###  https://schema.org/ScholarlyArticle
+schema:ScholarlyArticle rdf:type owl:Class .
+
+
+###  https://schema.org/SoftwareApplication
+schema:SoftwareApplication rdf:type owl:Class .
+
+
+###  https://schema.org/SoftwareSourceCode
+schema:SoftwareSourceCode rdf:type owl:Class .
+
+
+###  https://schema.org/WebPage
+schema:WebPage rdf:type owl:Class .
+
+
+###  https://w3id.org/dpv#Consent
+dpv:Consent rdf:type owl:Class .
+
+
+###  https://w3id.org/dpv#DataProtectionOfficer
+dpv:DataProtectionOfficer rdf:type owl:Class .
+
+
+###  https://w3id.org/dpv#DataSubject
+dpv:DataSubject rdf:type owl:Class .
+
+
+###  https://w3id.org/dpv#PersonalData
+dpv:PersonalData rdf:type owl:Class .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
